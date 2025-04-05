@@ -89,47 +89,6 @@ I'm continuously learning and keeping up-to-date with the latest advancements in
 
 </div>
 
-
-### 🔹 [Intellis-AI](https://github.com/bimadevs/Intellis-Ai) 
-An AI-powered project built with TypeScript. It enhances user interactions through machine learning models and automation techniques. The project leverages RESTful APIs and integrates with various external services to offer a seamless experience.
-
-- **Tech Stack**: TypeScript, Node.js, REST APIs
-- **Features**: Intelligent content generation, chat automation, natural language processing.
-
-### 🔹 [My Personal Website](https://github.com/bimadevs/myweb) 
-A modern, responsive personal website showcasing my portfolio, blog, and skills. Built using Next.js and styled with modern UI principles.
-
-- **Tech Stack**: Next.js, React, TypeScript, Tailwind CSS
-- **Features**: Portfolio integration, blog system, responsive design.
-
-### 🔹 [Bubble-Game](https://github.com/bimadevs/bubble-game) 
-An interactive web game developed using HTML, CSS, and vanilla JavaScript. This project demonstrates creative problem-solving and front-end mastery.
-
-- **Tech Stack**: HTML, CSS, JavaScript
-- **Features**: Engaging UI/UX, interactive animations, and gamification elements.
-
-### 🔹 [Image to Code](https://github.com/bimadevs/image-to-code) 
-Generate your image to code HTML and Tailwindcss
-
-- **Tech Stack**: Python
-- **LLMs**: Gemini
-- **Features**: Fast, Accurate 80%.
-  
-### 🔹 [Signature Generator ](https://github.com/bimadevs/signature-generator) 
-Generate your signature
-
-- **Tech Stack**: HTML, TailwindCSS, Javascript
-- **Features**: Cool, Fast, Beautiful hand Writings 
-
----
-### 🔹 [Keyboard Checker](https://github.com/bimadevs/keyboard-checker) 
-A virtual keyboard application that allows users to interact with a digital keyboard interface. Users can switch between full-size and half-size layouts, making it versatile for various devices and use cases.
-
-- **Tech Stack**: HTML, TailwindCSS, Javascript
-- **Features**: Cool, Fast
-
----
-
 ## 📈 GitHub Stats
 <div align="center">
   
