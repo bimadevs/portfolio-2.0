@@ -72,12 +72,21 @@ I'm continuously learning and keeping up-to-date with the latest advancements in
 ## 🚀 Featured Projects
 
 <div align="center">
-<img width="282" src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=bimadevs&repo=Intellis-Ai&theme=react&bg_color=273849&title_color=F85D7F&icon_color=F8D866&hide_border=true&show_icons=true" alt="github-readme-streak-stats">
-<img width="282" src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=bimadevs&repo=myweb&theme=react&bg_color=273849&title_color=F85D7F&icon_color=F8D866&hide_border=true&show_icons=true" alt="github-readme-streak-stats">
-<img width="282" src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=bimadevs&repo=bubble-game&theme=react&bg_color=273849&title_color=F85D7F&icon_color=F8D866&hide_border=true&show_icons=true" alt="github-readme-streak-stats">
-<img width="282" src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=bimadevs&repo=image-to-code&theme=react&bg_color=273849&title_color=F85D7F&icon_color=F8D866&hide_border=true&show_icons=true" alt="github-readme-streak-stats">
-<img width="282" src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=bimadevs&repo=signature-generator&theme=react&bg_color=273849&title_color=F85D7F&icon_color=F8D866&hide_border=true&show_icons=true" alt="github-readme-streak-stats">
-<img width="282" src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=bimadevs&repo=keyboard-checker&theme=react&bg_color=273849&title_color=F85D7F&icon_color=F8D866&hide_border=true&show_icons=true" alt="github-readme-streak-stats">
+<img width="282" src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=bimadevs&repo=deep-talk-ai&theme=react&bg_color=273849&title_color=F85D7F&icon_color=F8D866&hide_border=true&show_icons=true" alt="AI Deep Talk">
+  
+<img width="282" src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=bimadevs&repo=3d-builder&theme=react&bg_color=273849&title_color=F85D7F&icon_color=F8D866&hide_border=true&show_icons=true" alt="3D Builder">
+
+<img width="282" src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=bimadevs&repo=bimsc&theme=react&bg_color=273849&title_color=F85D7F&icon_color=F8D866&hide_border=true&show_icons=true" alt="Library Open Source BimSC">
+
+<img width="282" src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=bimadevs&repo=image-to-code&theme=react&bg_color=273849&title_color=F85D7F&icon_color=F8D866&hide_border=true&show_icons=true" alt="Image to Code">
+
+<img width="282" src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=bimadevs&repo=bimsui&theme=react&bg_color=273849&title_color=F85D7F&icon_color=F8D866&hide_border=true&show_icons=true" alt="Library UI Component BimsUI">
+
+<img width="282" src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=bimadevs&repo=pilihku-E-voting&theme=react&bg_color=273849&title_color=F85D7F&icon_color=F8D866&hide_border=true&show_icons=true" alt="Web Voting">
+
+
+<img width="282" src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=bimadevs&repo=nextjs-url-shortener&theme=react&bg_color=273849&title_color=F85D7F&icon_color=F8D866&hide_border=true&show_icons=true" alt="NextJs URL Shortener">
+
 </div>
 
 
