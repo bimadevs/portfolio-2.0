@@ -18,7 +18,8 @@
 
 ### Full Stack Developer | Web Enthusiast | Innovator | Tech Dreamer
 
-![Profile Banner](github-header.png) <!-- Use a customized banner image here -->
+<div align="center">
+  <img src="./public/images/logo-color.png" width="400" height="300" alt="Logo Bimadev"/>
 </div>
 
 
