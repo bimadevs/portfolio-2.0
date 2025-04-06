@@ -1,4 +1,4 @@
-const baseURL = "bimadev.xyz";
+const baseURL = "https://bimadev.xyz";
 
 const routes = {
   "/": true,
