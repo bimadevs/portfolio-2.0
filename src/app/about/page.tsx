@@ -14,6 +14,7 @@ import { baseURL } from "@/app/resources";
 import TableOfContents from "@/components/about/TableOfContents";
 import styles from "@/components/about/about.module.scss";
 import { person, about, social } from "@/app/resources/content";
+import ProfileCard from "@/components/about/ProfileCard";
 
 export async function generateMetadata() {
   const title = about.title;
@@ -114,7 +115,7 @@ export default function About() {
             flex={3}
             horizontal="center"
           >
-            <Avatar src={person.avatar} size="xl" />
+            <ProfileCard />
             <Flex gap="8" vertical="center">
               <Icon onBackground="accent-weak" name="globe" />
               {person.location}
