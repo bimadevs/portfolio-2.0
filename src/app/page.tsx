@@ -7,6 +7,7 @@ import { baseURL, routes } from "@/app/resources";
 import { home, about, person, newsletter } from "@/app/resources/content";
 import { Mailchimp } from "@/components";
 import { Posts } from "@/components/blog/Posts";
+import TrueFocus from "@/components/FocusText";
 
 export async function generateMetadata() {
   const title = home.title;
@@ -65,9 +66,14 @@ export default function Home() {
       <Column fillWidth paddingY="l" gap="m">
         <Column maxWidth="s">
           <RevealFx translateY="4" fillWidth horizontal="start" paddingBottom="m">
-            <Heading wrap="balance" variant="display-strong-l">
-              {home.headline}
-            </Heading>
+            <TrueFocus
+              sentence={home.headline}
+              manualMode={false}
+              blurAmount={5}
+              borderColor="blue"
+              animationDuration={2}
+              pauseBetweenAnimations={1}
+            />
           </RevealFx>
           <RevealFx translateY="8" delay={0.2} fillWidth horizontal="start" paddingBottom="m">
             <Text wrap="balance" onBackground="neutral-weak" variant="heading-default-xl">
@@ -97,6 +103,7 @@ export default function Home() {
           </RevealFx>
         </Column>
       </Column>
+
       <RevealFx translateY="16" delay={0.6}>
         <Projects range={[1, 1]} />
       </RevealFx>
