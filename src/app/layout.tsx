@@ -12,6 +12,8 @@ import { Source_Code_Pro } from "next/font/google";
 import { person, home } from "@/app/resources/content";
 import { Background, Column, Flex, ToastProvider } from "@/once-ui/components";
 
+
+
 export async function generateMetadata() {
   return {
     metadataBase: new URL(`https://${baseURL}`),
