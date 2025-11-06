@@ -34,21 +34,31 @@ export function generateMetadata({ params: { slug } }: BlogParams) {
     images,
     image,
     team,
+    tag,
   } = post.metadata;
   let ogImage = image ? `https://${baseURL}${image}` : `https://${baseURL}/og?title=${title}`;
 
   return {
     title,
     description,
+    keywords: tag ? [tag, "BimaDev", "Full Stack Developer", "Web Development"] : undefined,
+    authors: [{ name: person.name, url: `https://${baseURL}/about` }],
     openGraph: {
       title,
       description,
       type: "article",
       publishedTime,
       url: `https://${baseURL}/blog/${post.slug}`,
+      siteName: "BimaDev Portfolio",
+      locale: "en_US",
+      authors: [person.name],
+      tags: tag ? [tag] : undefined,
       images: [
         {
           url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: title,
         },
       ],
     },
@@ -57,6 +67,10 @@ export function generateMetadata({ params: { slug } }: BlogParams) {
       title,
       description,
       images: [ogImage],
+      creator: "@biimaa_jo",
+    },
+    alternates: {
+      canonical: `https://${baseURL}/blog/${post.slug}`,
     },
   };
 }
@@ -88,12 +102,31 @@ export default function Blog({ params }: BlogParams) {
             description: post.metadata.summary,
             image: post.metadata.image
               ? `https://${baseURL}${post.metadata.image}`
-              : `https://${baseURL}/og?title=${post.metadata.title}`,
+              : `https://${baseURL}/og?title=${encodeURIComponent(post.metadata.title)}`,
             url: `https://${baseURL}/blog/${post.slug}`,
             author: {
               "@type": "Person",
               name: person.name,
+              url: `https://${baseURL}/about`,
+              image: `https://${baseURL}${person.avatar}`,
             },
+            publisher: {
+              "@type": "Person",
+              name: person.name,
+              logo: {
+                "@type": "ImageObject",
+                url: `https://${baseURL}${person.avatar}`,
+              },
+            },
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": `https://${baseURL}/blog/${post.slug}`,
+            },
+            keywords: post.metadata.tag || "",
+            articleSection: post.metadata.tag || "Technology",
+            inLanguage: "en-US",
+            wordCount: post.content.trim().split(/\s+/).length,
+            timeRequired: `PT${Math.ceil(post.content.trim().split(/\s+/).length / 200)}M`,
           }),
         }}
       />

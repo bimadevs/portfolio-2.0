@@ -31,7 +31,7 @@ export const Footer = () => {
             / Build your portfolio with{" "}
             <SmartLink
               style={{ marginLeft: "-0.125rem" }}
-              href="https://ui.bimadev.xyz"
+              href="https://ui.bimadev.online"
             >
               BimsUI
             </SmartLink>

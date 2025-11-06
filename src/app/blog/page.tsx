@@ -20,6 +20,8 @@ export async function generateMetadata() {
       images: [
         {
           url: ogImage,
+          width: 1200,
+          height: 630,
           alt: title,
         },
       ],
@@ -29,6 +31,10 @@ export async function generateMetadata() {
       title,
       description,
       images: [ogImage],
+      creator: "@biimaa_jo",
+    },
+    alternates: {
+      canonical: `https://${baseURL}/blog`,
     },
   };
 }

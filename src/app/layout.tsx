@@ -15,25 +15,75 @@ import { Background, Column, Flex, ToastProvider } from "@/once-ui/components";
 export async function generateMetadata() {
   return {
     metadataBase: new URL(`https://${baseURL}`),
-    title: home.title,
+    title: {
+      default: home.title,
+      template: "%s | BimaDev Portfolio",
+    },
     description: home.description,
+    keywords: [
+      "Full Stack Developer",
+      "Next.js Developer",
+      "React Developer",
+      "TypeScript",
+      "Web Development Indonesia",
+      "Bima Dev",
+      "AI Integration",
+      "Modern Web Apps",
+      "Frontend Developer",
+      "Backend Developer",
+      "Supabase",
+      "Node.js",
+      "JavaScript",
+    ],
+    authors: [{ name: person.name, url: `https://${baseURL}` }],
+    creator: person.name,
+    publisher: person.name,
+    formatDetection: {
+      email: false,
+      address: false,
+      telephone: false,
+    },
     openGraph: {
       title: `${person.firstName}'s Portfolio`,
-      description: "Portfolio website showcasing my work.",
+      description:
+        "Full Stack Developer from Indonesia specializing in Next.js, React, TypeScript, and AI integration. Building modern, performant web applications.",
       url: baseURL,
       siteName: `${person.firstName}'s Portfolio`,
       locale: "en_US",
       type: "website",
+      images: [
+        {
+          url: `https://${baseURL}/og?title=${encodeURIComponent(home.title)}`,
+          width: 1200,
+          height: 630,
+          alt: `${person.firstName}'s Portfolio`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${person.firstName} - ${person.role}`,
+      description:
+        "Building modern web applications with Next.js, React & AI integration",
+      creator: "@biimaa_jo",
+      images: [`https://${baseURL}/og?title=${encodeURIComponent(home.title)}`],
     },
     robots: {
       index: true,
       follow: true,
+      nocache: false,
       googleBot: {
         index: true,
         follow: true,
         "max-video-preview": -1,
         "max-image-preview": "large",
         "max-snippet": -1,
+      },
+    },
+    alternates: {
+      canonical: `https://${baseURL}`,
+      types: {
+        "application/rss+xml": `https://${baseURL}/feed.xml`,
       },
     },
   };

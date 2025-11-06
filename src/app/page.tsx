@@ -45,22 +45,61 @@ export default function Home() {
         type="application/ld+json"
         suppressHydrationWarning
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            name: home.title,
-            description: home.description,
-            url: `https://${baseURL}`,
-            image: `${baseURL}/og?title=${encodeURIComponent(home.title)}`,
-            publisher: {
-              "@type": "Person",
-              name: person.name,
-              image: {
-                "@type": "ImageObject",
-                url: `${baseURL}${person.avatar}`,
+          __html: JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "BimaDev Portfolio",
+              url: `https://${baseURL}`,
+              description: home.description,
+              potentialAction: {
+                "@type": "SearchAction",
+                target: {
+                  "@type": "EntryPoint",
+                  urlTemplate: `https://${baseURL}/blog?q={search_term_string}`,
+                },
+                "query-input": "required name=search_term_string",
               },
             },
-          }),
+            {
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: person.name,
+              url: `https://${baseURL}`,
+              image: `https://${baseURL}${person.avatar}`,
+              jobTitle: person.role,
+              description: home.description,
+              sameAs: [
+                "https://www.instagram.com/biimaa_jo",
+                "https://github.com/bimadevs",
+              ],
+              knowsAbout: [
+                "Next.js",
+                "React",
+                "TypeScript",
+                "Full Stack Development",
+                "Web Development",
+                "AI Integration",
+                "Node.js",
+                "Supabase",
+              ],
+              email: "bimadev06@gmail.com",
+              address: {
+                "@type": "PostalAddress",
+                addressCountry: "ID",
+                addressRegion: "West Kalimantan",
+              },
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "ProfilePage",
+              mainEntity: {
+                "@id": `https://${baseURL}/#person`,
+              },
+              dateCreated: "2024-01-01",
+              dateModified: new Date().toISOString().split("T")[0],
+            },
+          ]),
         }}
       />
       <Column fillWidth paddingY="l" gap="m">

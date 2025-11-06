@@ -176,19 +176,19 @@ const about = {
         images: [
           {
             src: "/images/projects/project-01/BimsUI.png",
-            alt: "Project BimsUI",
+            alt: "BimsUI - Modern React component library with TypeScript and Tailwind CSS",
             width: 16,
             height: 9,
           },
           {
             src: "/images/projects/project-01/BimSC.png",
-            alt: "Project BimSC",
+            alt: "BimSC - Full stack web application built with Next.js and Supabase",
             width: 16,
             height: 9,
           },
           {
             src: "/images/projects/project-01/url-shortener.png",
-            alt: "Project URL Shortener",
+            alt: "URL Shortener - Link shortening service with analytics built with Next.js",
             width: 16,
             height: 9,
           },
@@ -201,13 +201,13 @@ const about = {
         images: [
           {
             src: "/images/projects/project-01/3d-builder.png",
-            alt: "Project image",
+            alt: "3D Builder AI - AI-powered 3D model generation and visualization tool",
             width: 16,
             height: 9,
           },
           {
             src: "/images/projects/project-01/deep-talk-ai.png",
-            alt: "Project image",
+            alt: "Deep Talk AI - Advanced conversational AI chatbot with natural language processing",
             width: 16,
             height: 9,
           },
@@ -241,72 +241,72 @@ const gallery = {
   images: [
     {
       src: "/images/gallery/img-01.jpg",
-      alt: "image",
+      alt: "Developer workspace with dual monitors showing code editor and terminal",
       orientation: "vertical",
     },
     {
       src: "/images/gallery/img-02.jpg",
-      alt: "image",
+      alt: "Modern web development setup with MacBook and accessories",
       orientation: "horizontal",
     },
     {
       src: "/images/gallery/img-03.jpg",
-      alt: "image",
+      alt: "Code snippet showing Next.js React component implementation",
       orientation: "vertical",
     },
     {
       src: "/images/gallery/img-04.jpg",
-      alt: "image",
+      alt: "Clean minimalist desk setup for programming and development",
       orientation: "horizontal",
     },
     {
       src: "/images/gallery/img-05.jpg",
-      alt: "image",
+      alt: "BimaDev at tech meetup discussing full stack development",
       orientation: "horizontal",
     },
     {
       src: "/images/gallery/img-06.jpg",
-      alt: "image",
+      alt: "Terminal window showing Node.js and npm commands",
       orientation: "vertical",
     },
     {
       src: "/images/gallery/img-07.jpg",
-      alt: "image",
+      alt: "Modern web application UI design on large display",
       orientation: "horizontal",
     },
     {
       src: "/images/gallery/img-08.jpg",
-      alt: "image",
+      alt: "Code editor with TypeScript and React syntax highlighting",
       orientation: "vertical",
     },
     {
       src: "/images/gallery/img-09.jpg",
-      alt: "image",
+      alt: "Developer tools and debugging interface in browser",
       orientation: "horizontal",
     },
     {
       src: "/images/gallery/img-10.jpg",
-      alt: "image",
+      alt: "Project planning board with development workflow diagram",
       orientation: "horizontal",
     },
     {
       src: "/images/gallery/img-11.jpg",
-      alt: "image",
+      alt: "Mobile responsive design testing on multiple devices",
       orientation: "vertical",
     },
     {
       src: "/images/gallery/img-12.jpg",
-      alt: "image",
+      alt: "Git version control workflow visualization and branching strategy",
       orientation: "horizontal",
     },
     {
       src: "/images/gallery/img-13.jpg",
-      alt: "image",
+      alt: "API documentation and REST endpoint testing in Postman",
       orientation: "horizontal",
     },
     {
       src: "/images/gallery/img-14.jpg",
-      alt: "image",
+      alt: "Database schema design and relationship diagram",
       orientation: "horizontal",
     },
   ],

@@ -5,8 +5,23 @@ export default function robots() {
     rules: [
       {
         userAgent: "*",
+        allow: "/",
+        disallow: ["/api/", "/og?*", "/_next/", "/admin/"],
+      },
+      {
+        userAgent: "GPTBot",
+        disallow: ["/"],
+      },
+      {
+        userAgent: "CCBot",
+        disallow: ["/"],
+      },
+      {
+        userAgent: "anthropic-ai",
+        disallow: ["/"],
       },
     ],
-    sitemap: `${baseURL}/sitemap.xml`,
+    sitemap: `https://${baseURL}/sitemap.xml`,
+    host: `https://${baseURL}`,
   };
 }

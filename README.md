@@ -108,7 +108,7 @@ I'm continuously learning and keeping up-to-date with the latest advancements in
 ## 📫 Connect With Me
 I'm always open to new collaborations and projects. Let’s connect and build something amazing together!
 
-- 🌐 **Website**: [bimadev.xyz](https://bimadev.xyz)
+- 🌐 **Website**: [bimadev.online](https://bimadev.online)
 - 💼 **Instagram**: [Biimaa_jo](https://instagram.com/biimaa_jo)
 - 📧 **Email**: bimaj0206@gmail.com
 ---
