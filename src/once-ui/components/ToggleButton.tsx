@@ -57,10 +57,14 @@ const ToggleButton = forwardRef<HTMLElement, ToggleButtonProps>(
     },
     ref,
   ) => {
+    const labelContent = label || children;
+    const ariaLabel = props["aria-label"] || (typeof labelContent === 'string' ? labelContent : undefined);
+
     return (
       <ElementType
         ref={ref}
         href={href}
+        aria-label={ariaLabel}
         className={classNames(
           styles.button,
           styles[variant],
