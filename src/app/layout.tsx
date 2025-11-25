@@ -55,7 +55,7 @@ export async function generateMetadata() {
       telephone: false,
     },
     openGraph: {
-      title: `${person.firstName}'s Portfolio`,
+      title: `${person.firstName}`,
       description:
         "Full Stack Developer from Indonesia specializing in Next.js, React, TypeScript, and AI integration. Building modern, performant web applications.",
       url: baseURL,
