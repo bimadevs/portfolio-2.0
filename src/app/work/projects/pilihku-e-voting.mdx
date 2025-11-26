@@ -1,0 +1,190 @@
+---
+title: "PilihKu — Sistem E-Voting OSIS Modern dan Aman"
+publishedAt: "2025-04-05"
+summary: "Kenalan dengan PilihKu — sistem voting digital modern untuk pemilihan ketua OSIS yang aman, mudah, dan dilengkapi fitur admin yang komprehensif."
+images:
+  - "/images/projects/project-01/pilihku.png"
+team:
+  - name: "BimaDev"
+    role: "FullStack Developer & System Architect"
+    avatar: "/images/logo-color.png"
+    WhatsApp: "https://wa.me/6282254044783"
+link: https://vote.bimadev.online
+---
+
+> "Suaramu untuk masa depan sekolah — memilih dengan aman, mudah, dan transparan."
+
+Halo semuanya, ini Bima lagi!
+
+Kali ini saya ingin berbagi project terbaru yang telah saya kembangkan: **PilihKu** — sebuah sistem e-voting modern untuk pemilihan ketua dan Wakil Ketua OSIS di sekolah.
+
+---
+
+## Apa itu PilihKu?
+
+PilihKu adalah aplikasi voting digital yang dirancang khusus untuk proses pemilihan OSIS di sekolah. Tidak seperti sistem voting konvensional yang ribet, PilihKu hadir dengan antarmuka yang bersih, aman, dan sangat mudah digunakan.
+
+Tidak perlu antri panjang. Tidak perlu takut suara tidak terhitung. Tidak perlu menunggu berjam-jam untuk hasil.
+
+Cukup login dengan NIS, lihat profil kandidat, pilih, dan selesai — suara Anda terhitung dengan aman!
+
+---
+
+## Mengapa Saya Membangun PilihKu?
+
+Mungkin sebagian dari Anda berpikir, "Lha, voting kan sudah ada yang buat?" 
+
+Benar, tapi saya melihat ada beberapa masalah yang belum terselesaikan dengan baik:
+
+- **Keamanan** yang masih dipertanyakan
+- **Antarmuka** yang kurang user-friendly untuk siswa
+- **Transparansi** hasil yang masih minim
+- **Fitur admin** yang belum komprehensif
+- **Real-time tracking** yang tidak ada
+
+Jadi, saya memutuskan untuk membuat solusi yang lebih baik — PilihKu!
+
+---
+
+## Fitur Unggulan
+
+### Untuk Siswa/Pemilih:
+-  **Login sederhana** menggunakan NIS
+-  **Profil kandidat lengkap** dengan foto, visi, dan misi
+-  **Voting yang aman** dengan sistem konfirmasi
+-  **Halaman terima kasih** setelah voting
+-  **Anti double voting** — satu NIS, satu suara
+-  **Responsif** di mobile dan desktop
+-  **Real-time results** yang transparan
+
+### Untuk Admin:
+-  **Dashboard admin** dengan statistik real-time
+-  **Manajemen kandidat** (CRUD lengkap)
+-  **Manajemen voters** dengan import CSV
+-  **Monitoring hasil** voting secara live
+-  **Export hasil** dalam format CSV
+-  **Cetak laporan** hasil pemilihan
+-  **Pengaturan waktu** pengumuman pemenang
+-  **Pengumuman otomatis** dengan animasi confetti
+-  **Visualisasi data** dengan Chart.js
+
+### Fitur Pengumuman Menarik:
+-  **Countdown timer** menuju pengumuman
+-  **Animasi confetti** saat pengumuman
+-  **Penentuan pemenang otomatis** berdasarkan suara terbanyak
+-  **Reset pengaturan** pengumuman kapan saja
+
+---
+
+## Teknologi yang Digunakan
+
+### Frontend Stack:
+- **Next.js 14** dengan App Router
+- **React & TypeScript** untuk type safety
+- **Tailwind CSS** untuk styling yang modern
+- **Framer Motion** untuk animasi yang smooth
+- **Chart.js & React-Chartjs-2** untuk visualisasi data
+- **React Icons** untuk icon yang konsisten
+
+### Backend & Database:
+- **Supabase** sebagai Backend-as-a-Service
+- **Row Level Security (RLS)** untuk keamanan data
+- **Real-time subscriptions** untuk update live
+- **Storage** untuk foto kandidat
+
+### Additional Features:
+- **React Hot Toast** untuk notifikasi
+- **React Confetti** untuk celebrations
+- **React DatePicker** untuk scheduling
+- **Papa Parse** untuk import CSV
+- **React-to-Print** untuk laporan
+- **XLSX** untuk export Excel
+
+---
+
+## Keamanan & Integritas Voting
+
+PilihKu dirancang dengan **keamanan tingkat tinggi**:
+
+-  **Autentikasi berbasis token** yang aman
+-  **Row Level Security (RLS)** di database
+-  **Validasi input** di frontend dan backend
+-  **Pencegahan double voting** yang ketat
+-  **Enkripsi data** sensitif
+-  **Session management** yang robust
+
+Setiap vote diamankan dan tidak bisa dimanipulasi. Data voter dienkripsi dan hanya admin yang berwenang yang bisa mengakses.
+
+---
+
+## Cara Kerja PilihKu
+
+### Untuk Siswa:
+1. **Login** dengan NIS di halaman utama
+2. **Lihat profil** semua kandidat (foto, visi, misi)
+3. **Pilih kandidat** yang diinginkan
+4. **Konfirmasi** pilihan Anda
+5. **Selesai!** Suara terhitung dengan aman
+
+### Untuk Admin:
+1. **Login admin** di `/admin`
+2. **Kelola kandidat** — tambah, edit, hapus
+3. **Kelola voters** — tambah manual atau import CSV
+4. **Monitor hasil** voting secara real-time
+5. **Atur pengumuman** pemenang
+6. **Export & cetak** laporan hasil
+
+---
+
+## Manfaat untuk Sekolah
+
+### Efisiensi Waktu:
+-  **Proses voting cepat** — tidak perlu antri
+-  **Hasil instant** — tidak perlu hitung manual
+-  **Mudah Rivera** — admin tidak perlu ribet
+
+### Transparansi:
+-  **Real-time results** — semua bisa lihat progress
+-  **Visualisasi data** — chart yang mudah dimengerti
+-  **Audit trail** — jejak voting yang jelas
+
+### Keamanan:
+-  **Data aman** — terenkripsi dan terlindungi
+-  **Anti fraud** — satu NIS satu suara
+-  **Backup otomatis** — tidak hilang
+
+---
+
+## Testing & Feedback
+
+PilihKu sudah saya test secara menyeluruh, tapi saya yakin selalu ada ruang untuk improvement.
+
+**Punya saran? Ada bug? Ingin collaborasi?**
+
+Silakan reach out ke saya:
+-  [WhatsApp](https://wa.me/6282254044783)
+-  [LinkedIn](https://linkedin.com/in/bimadevs)
+-  [GitHub](https://github.com/bimadevs)
+
+Atau langsung cek code-nya di GitHub: [github.com/bimadevs/pilihku-E-Voting](https://github.com/bimadevs/pilihku-E-Voting)
+
+---
+
+## Next Steps
+
+Saya belum berhenti di sini! Masih ada rencana untuk:
+
+-  **Push notification** untuk pengingat voting
+-  **Mobile app** versi native
+-  **Multiple elections** dalam satu platform
+-  **Advanced analytics** untuk admin
+-  **Custom themes** untuk sekolah
+-  **Multi-language** support
+
+**Yuk, kita ramaikan democracy digital di sekolah!** 🚀
+
+---
+
+*Terima kasih sudah membaca sampai akhir. Semoga PilihKu bisa bermanfaat untuk sekolah-sekolah di seluruh Indonesia!* 🇮🇩
+
+**#DemocracyDigital #E-Voting #OSIS #Indonesia #TechForEducation**
