@@ -53,7 +53,7 @@ const easeInOutCubic = (x: number): number =>
   x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
 
 const ProfileCardComponent: React.FC<ProfileCardProps> = ({
-  avatarUrl = "./images/bima.png",
+  avatarUrl = "./images/bima4.jpeg",
   iconUrl = "./images/logo-color.png",
   grainUrl = "<Placeholder for grain URL>",
   behindGradient,
