@@ -1,0 +1,85 @@
+---
+title: "Berhenti Mencari 'Perfect Tech Stack': Kode Lo Gak Bakal Jalan Kalau Cuma Dipikirin"
+publishedAt: "2026-02-02"
+summary: "Pernah menghabiskan 2 minggu cuma buat milih antara Next.js atau Remix, tapi ujung-ujungnya project mangkrak? Yuk, sembuhin penyakit Analysis Paralysis ini bareng-bareng."
+tag: "Career & Mindset"
+---
+
+Pernah nggak sih kamu ada di posisi ini:
+
+Lagi semangat-semangatnya punya ide aplikasi baru. Idenya brilian, solusinya mantap. Kamu buka laptop, buka terminal, terus tiba-tiba... **bingung**.
+
+*"Eh, mending pake Next.js App Router atau Pages Router ya?"*
+*"Database-nya SQL apa NoSQL ya? Supabase lagi hits nih, tapi aku bisanya MySQL."*
+*"Styling-nya pake Tailwind apa CSS-in-JS ya? Atau coba Panda CSS?"*
+
+Dua minggu berlalu, folder project-nya masih kosong, tapi *bookmark* browser kamu penuh sama artikel "Top Backend Frameworks 2026". Selamat, kamu kena penyakit yang namanya **Analysis Paralysis**.
+
+## Kenapa Kita Terobsesi Sama Tools?
+
+Jujur aja, sebagai developer, kita ini kayak anak kecil di toko mainan. Tiap ada framework baru rilis dengan janji *"Blazing Fast"* atau *"Developer Experience 100x"*, kita langsung FOMO (Fear Of Missing Out). Kita takut kalau nggak pake teknologi terbaru, kode kita bakal dibilang "kuno" atau "legacy" sebelum rilis.
+
+Padahal realitanya? **User nggak peduli.**
+
+User aplikasi kamu nggak bakal ngecek *Network Tab* di browser buat liat apakah JSON-nya dikirim pake tRPC atau REST API biasa. Mereka cuma peduli:
+1. Aplikasinya jalan.
+2. Nggak lemot.
+3. Masalah mereka teratasi.
+
+> **Fakta Pahit:** Startup sekelas Facebook dan Wikipedia dibangun pake PHP. Iya, PHP yang sering diejek itu. Dan mereka sukses besar sebelum teknologi "keren" zaman now lahir.
+
+## The "Boring" Stack adalah Kunci
+
+Ada konsep menarik yang sering dibilang sama founder-founder indie sukses: **The Boring Stack**.
+
+Maksudnya apa? Gunakan teknologi yang paling **membosankan** buat kamu. Kenapa? Karena teknologi yang membosankan itu artinya teknologi yang **paling kamu kuasai**.
+
+Kalau kamu jagonya Laravel + jQuery, ya gaskeun pake itu. Kalau kamu khatamnya React + Express, jangan memaksakan diri belajar Rust cuma buat bikin To-Do List app sederhana.
+
+Coba kita liat perbandingan *mental load*-nya di bawah ini:
+
+<CodeBlock className="my-10"
+    compact
+    codeInstances={[
+        {
+            code: '// Skenario A: Pake Tech Stack Baru (Hype)\nconst devProcess = {\n  learningCurve: "High",\n  debuggingTime: "Infinite (StackOverflow belum banyak jawaban)",\n  shippedProduct: false,\n  stressLevel: 99\n};\n\n// Skenario B: Pake Tech Stack yang Dikuasai (Boring)\nconst devProcess = {\n  learningCurve: "Low",\n  debuggingTime: "Low (Udah hafal error-nya)",\n  shippedProduct: true,\n  stressLevel: 10\n};',
+            label: 'Realita.js',
+            language: 'js'
+        },
+    ]}
+    copyButton
+/>
+
+Kelihatan kan bedanya? Yang satu bikin stress, yang satu bikin produk jadi.
+
+## Kapan Boleh Eksperimen?
+
+*"Loh, berarti kita nggak boleh belajar hal baru dong, Bang?"*
+
+Bukan gitu konsepnya, *ferguso*. Belajar itu wajib. Tapi kamu harus tau **konteksnya**.
+
+* **Kalau tujuannya Shipping Product (Cari Duit/User):** Pakai teknologi yang kamu paling nyaman dan cepat. Prioritasnya adalah kecepatan eksekusi.
+* **Kalau tujuannya Belajar (Learning):** Silakan pake framework yang baru rilis kemarin sore. Eksplorasi sepuasnya, error nggak masalah.
+
+Jangan dicampur aduk. Mau bikin startup tapi malah belajar bahasa baru dari nol itu resep bencana buat *timeline* kamu.
+
+## Tips Buat Kamu yang Lagi Overthinking
+
+Biar nggak terjebak lagi, coba terapkan aturan main ini sebelum mulai ngoding:
+
+### 1. Batasi Waktu Riset
+Kasih waktu maksimal 4 jam buat riset tools. Setelah timer bunyi, putuskan saat itu juga. *Stick to the plan*.
+
+### 2. Fokus ke MVP (Minimum Viable Product)
+Fitur login, dashboard sederhana, dan fungsi utama. Udah, itu dulu. Nggak usah mikirin *microservices* atau *kubernetes* kalau user-nya masih nol.
+
+### 3. "Good Enough" is Perfect
+Kode yang jalan di production jauh lebih berharga daripada kode "sempurna" yang cuma ada di imajinasi atau local host kamu.
+
+---
+
+Jadi, buat kamu yang sekarang lagi diem ngeliatin layar kosong sambil bingung milih tech stack: **Tutup tab browser riset kamu, buka IDE, dan mulai ngetik pake apa aja yang kamu bisa sekarang.**
+
+Dunia butuh karya kamu, bukan konfigurasi Webpack kamu yang super canggih itu.
+
+*Gimana menurutmu? Masih sering galau milih stack atau udah tobat? Yuk ngobrol di DM Instagram saya atau mention saya di Twitter!*

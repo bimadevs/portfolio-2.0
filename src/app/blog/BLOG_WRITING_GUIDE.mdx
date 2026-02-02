@@ -1,0 +1,608 @@
+---
+title: "Panduan Lengkap Menulis Blog MDX"
+publishedAt: "2026-02-02"
+summary: "Dokumentasi lengkap tentang cara menulis blog di website ini, mencakup frontmatter, komponen MDX, tag markdown, dan best practices."
+tag: "Documentation"
+---
+
+> **Selamat datang!** Panduan ini akan membantu kamu memahami cara menulis blog MDX di website ini dengan fitur-fitur lengkap yang tersedia.
+
+---
+
+## 1. Header / Frontmatter
+
+Setiap file blog MDX harus diawali dengan frontmatter YAML. Berikut adalah field-field yang tersedia:
+
+### Field Wajib
+
+| Field | Tipe | Deskripsi | Contoh |
+|-------|------|-----------|--------|
+| `title` | string | Judul blog post | `"Tips Belajar React"` |
+| `publishedAt` | string (YYYY-MM-DD) | Tanggal publikasi | `"2026-02-02"` |
+| `summary` | string | Ringkasan singkat untuk SEO dan preview | `"Panduan lengkap..."` |
+| `tag` | string | Kategori blog post | `"Journal"`, `"Tips"`, `"Career & Mindset"` |
+
+### Contoh Frontmatter
+
+```yaml
+---
+title: "Judul Blog Post Kamu"
+publishedAt: "2026-02-02"
+summary: "Ringkasan singkat yang muncul di SEO dan preview card."
+tag: "Journal"
+---
+```
+
+### Kategori Tag yang Tersedia
+
+- `Journal` — Catatan harian, pengalaman pribadi, curhat developer
+- `Tips` — Tutorial, tips & trik, panduan praktis
+- `Career & Mindset` — Karir, motivasi, pengembangan diri
+- `Documentation` — Dokumentasi teknis (seperti file ini)
+
+---
+
+## 2. Komponen MDX yang Tersedia
+
+Website ini menyediakan beberapa komponen kustom yang bisa kamu gunakan dalam file MDX.
+
+### 2.1 CodeBlock
+
+Komponen untuk menampilkan kode dengan syntax highlighting dan tombol copy.
+
+#### Props
+
+| Prop | Tipe | Default | Deskripsi |
+|------|------|---------|-----------|
+| `codeInstances` | array | required | Array objek kode yang akan ditampilkan |
+| `className` | string | `""` | Class CSS tambahan (contoh: `"my-10"`, `"my-24"`) |
+| `compact` | boolean | `false` | Mode kompak tanpa padding berlebih |
+| `copyButton` | boolean | `false` | Menampilkan tombol copy |
+
+#### Struktur codeInstances
+
+```typescript
+{
+  code: string,      // Kode yang akan ditampilkan
+  label: string,     // Label tab (jika multiple)
+  language: string   // Bahasa: 'js', 'ts', 'tsx', 'json', 'css', dll
+}
+```
+
+#### Contoh Penggunaan
+
+<CodeBlock className="my-10"
+    compact
+    codeInstances={[
+        {
+            code: 'const greeting = "Hello World";\nconsole.log(greeting);',
+            label: 'Javascript',
+            language: 'js'
+        },
+    ]}
+    copyButton
+/>
+
+#### Contoh Multiple Code Tabs
+
+<CodeBlock className="my-10"
+    compact
+    codeInstances={[
+        {
+            code: 'function add(a, b) {\n  return a + b;\n}',
+            label: 'JavaScript',
+            language: 'js'
+        },
+        {
+            code: 'const add = (a: number, b: number): number => {\n  return a + b;\n}',
+            label: 'TypeScript',
+            language: 'ts'
+        },
+        {
+            code: 'def add(a, b):\n    return a + b',
+            label: 'Python',
+            language: 'python'
+        },
+    ]}
+    copyButton
+/>
+
+---
+
+### 2.2 SmartImage (Standar MDX)
+
+Untuk menyisipkan gambar, gunakan syntax markdown standar. Gambar akan otomatis menggunakan komponen SmartImage dengan fitur:
+
+- **Enlarge** — Klik gambar untuk memperbesar
+- **Aspect Ratio** — 16/9 secara default
+- **Rounded Corner** — Radius medium
+- **Margin** — Margin otomatis (my-20)
+
+#### Syntax
+
+```markdown
+![Alt text](/images/path/to/image.png)
+```
+
+#### Contoh
+
+```markdown
+![Screenshot Dashboard](/images/projects/project-01/dashboard.png)
+```
+
+#### Lokasi Gambar
+
+Simpan gambar di folder `public/images/` dengan struktur:
+- `public/images/projects/` — Untuk screenshot project
+- `public/images/gallery/` — Untuk foto galeri
+- `public/images/blog/` — Untuk ilustrasi blog (buat folder jika perlu)
+
+---
+
+### 2.3 CustomLink
+
+Link otomatis menggunakan komponen SmartLink yang menangani:
+
+- **Internal links** (`/path`) — Menggunakan client-side navigation
+- **Anchor links** (`#section`) — Smooth scroll ke section
+- **External links** (`https://...`) — Otomatis membuka tab baru dengan `target="_blank" rel="noopener noreferrer"`
+
+#### Syntax
+
+```markdown
+[Text Link](https://example.com)
+[Link Internal](/about)
+[Link ke Section](#heading-id)
+```
+
+#### Contoh
+
+```markdown
+DM aja gue di [WhatsApp](https://wa.me/628xxxxxxxxxx)
+Baca juga [tentang saya](/about)
+Lompat ke [bagian tips](#tips-berguna)
+```
+
+---
+
+### 2.4 Heading dengan Anchor Link
+
+Semua heading (H1-H6) otomatis memiliki:
+
+- **Anchor link** — ID otomatis berdasarkan teks heading
+- **HeadingLink component** — Hover untuk melihat link icon
+- **Margin** — Spacing otomatis
+
+#### Auto-generated ID
+
+ID di-generate dari teks heading dengan format:
+- Lowercase
+- Spasi diganti dengan hyphen (`-`)
+- Karakter non-alphanumeric dihapus
+- Multiple hyphens digabung
+
+#### Contoh
+
+```markdown
+## Tips Belajar React
+```
+
+Akan menghasilkan ID: `#tips-belajar-react`
+
+Kamu bisa link ke heading tersebut dengan:
+```markdown
+[Lompat ke tips](#tips-belajar-react)
+```
+
+---
+
+### 2.5 Table
+
+Komponen Table kustom untuk menampilkan data dalam format tabel.
+
+#### Props
+
+| Prop | Tipe | Deskripsi |
+|------|------|-----------|
+| `data` | object | Object dengan `headers` (array) dan `rows` (array of arrays) |
+
+#### Contoh Penggunaan
+
+<CodeBlock className="my-10"
+    compact
+    codeInstances={[
+        {
+            code: '<Table\n  data={{\n    headers: ["Nama", "Role", "Stack"],\n    rows: [\n      ["Bima", "Frontend", "React"],\n      ["Andi", "Backend", "Node.js"],\n      ["Citra", "Fullstack", "Next.js"]\n    ]\n  }}\n/>',
+            label: 'JSX',
+            language: 'jsx'
+        },
+    ]}
+    copyButton
+/>
+
+---
+
+## 3. Tag Markdown yang Didukung
+
+Berikut adalah tag markdown standar yang didukung dengan styling otomatis:
+
+### 3.1 Heading
+
+```markdown
+# Heading 1 (H1)
+## Heading 2 (H2)
+### Heading 3 (H3)
+#### Heading 4 (H4)
+##### Heading 5 (H5)
+###### Heading 6 (H6)
+```
+
+> **Rekomendasi:** Gunakan H2 untuk section utama, H3 untuk subsection.
+
+---
+
+### 3.2 Bold dan Italic
+
+```markdown
+**Teks tebal** atau __teks tebal__
+*Teks miring* atau _teks miring_
+***Tebal dan miring***
+~~Teks dicoret~~ (jika didukung)
+```
+
+Hasil:
+- **Teks tebal**
+- *Teks miring*
+- ***Tebal dan miring***
+
+---
+
+### 3.3 Blockquote
+
+```markdown
+> Ini adalah quote singkat.
+
+> **Fakta Pahit:** Startup sekelas Facebook dibangun pake PHP.
+```
+
+Hasil:
+> Ini adalah quote singkat.
+
+> **Fakta Pahit:** Startup sekelas Facebook dibangun pake PHP.
+
+---
+
+### 3.4 List
+
+#### Unordered List (Bullet)
+
+```markdown
+- Item pertama
+- Item kedua
+  - Sub item A
+  - Sub item B
+- Item ketiga
+```
+
+Hasil:
+- Item pertama
+- Item kedua
+  - Sub item A
+  - Sub item B
+- Item ketiga
+
+#### Ordered List (Numbered)
+
+```markdown
+1. Langkah pertama
+2. Langkah kedua
+   1. Sub langkah A
+   2. Sub langkah B
+3. Langkah ketiga
+```
+
+Hasil:
+1. Langkah pertama
+2. Langkah kedua
+   1. Sub langkah A
+   2. Sub langkah B
+3. Langkah ketiga
+
+---
+
+### 3.5 Divider (Horizontal Rule)
+
+```markdown
+---
+```
+
+Hasil: Garis horizontal pemisah antar section
+
+---
+
+### 3.6 Inline Code
+
+```markdown
+Gunakan `console.log()` untuk debugging.
+Variabel `const` tidak bisa di-reassign.
+```
+
+Hasil:
+Gunakan `console.log()` untuk debugging.
+Variabel `const` tidak bisa di-reassign.
+
+---
+
+### 3.7 Fenced Code Block
+
+Untuk kode multi-baris tanpa syntax highlighting khusus:
+
+```markdown
+```json
+{
+  "message": "Internal Server Error"
+}
+```
+```
+
+Hasil:
+```json
+{
+  "message": "Internal Server Error"
+}
+```
+
+---
+
+## 4. Contoh File Blog Lengkap
+
+Berikut adalah 3 contoh lengkap yang menunjukkan berbagai fitur:
+
+### Contoh 1: Artikel Journal dengan CodeBlock
+
+<CodeBlock className="my-10"
+    compact
+    codeInstances={[
+        {
+            code: '---\ntitle: "Hari Pertama Jadi Developer"\npublishedAt: "2026-02-02"\nsummary: "Cerita pertama kali deploy ke production dan deg-degannya."\ntag: "Journal"\n---\n\nHari ini adalah hari bersejarah. Setelah 3 bulan belajar ngoding, akhirnya gue berani deploy project pertama ke production!\n\n## Perjalanan Dimulai\n\nSemua bermula dari rasa penasaran. Gue inget banget pertama kali ngetik `console.log("Hello World")` dan muncul di terminal. Rasanya kayak jadi hacker di film.\n\n> **Fakta lucu:** Gue sempat typo `console.log` jadi `consol.log` dan bingung kenapa error.\n\n## Momen "Aha!"\n\nAda beberapa momen yang bikin gue ngerasa \"Ooohh gitu!\"\n\n1. **Ngerti variable** — Kayak ngasih nama kotak buat nyimpen data.\n2. **Function** — Baris kode yang bisa dipanggil berkali-kali.\n3. **Array dan Object** — Cara nyimpen data yang lebih kompleks.\n\n## Kode Pertama yang Berhasil\n\n```javascript\nfunction greet(name) {\n  return `Halo, ${name}! Selamat datang di dunia coding.`;\n}\n\nconsole.log(greet("Bima"));\n```\n\n---\n\nIntinya? **Jangan takut mulai.** Semua expert pernah jadi beginner.',
+            label: 'Journal Post',
+            language: 'markdown'
+        },
+    ]}
+    copyButton
+/>
+
+---
+
+### Contoh 2: Artikel Tips dengan List dan Formatting
+
+<CodeBlock className="my-10"
+    compact
+    codeInstances={[
+        {
+            code: '---\ntitle: "5 Tips Produktif Ngoding di Malam Hari"\npublishedAt: "2026-02-02"\nsummary: "Cara tetap fokus dan produktif saat coding larut malam."\ntag: "Tips"\n---\n\n> *\"Kopi panas + IDE gelap = Flow state\"*\n\nBanyak developer paling produktif di malam hari. Tapi ada risikonya: burnout dan jadwal tidur yang berantakan.\n\n## Tips Produktif Night Owl\n\n### 1. Atur Environment\n\n- **Lighting:** Gunakan lampu warm light, jangan terlalu terang\n- **Posture:** Pastiin kursi dan meja ergonomis\n- **Distraction:** Matikan notifikasi medsos\n\n### 2. Teknik Pomodoro\n\nKerja 25 menit, istirahat 5 menit. Setelah 4 siklus, istirahat panjang 15-30 menit.\n\n> **Manfaat:** Mencegah mental fatigue dan menjaga fokus.\n\n### 3. Siapkan Snack Sehat\n\nHindari gorengan dan yang terlalu manis. Pilih:\n- Kacang-kacangan\n- Buah potong\n- Air putih banyak\n\n### 4. Set Deadline Palsu\n\nTrik psikologis: kasih deadline 1 jam lebih cepat dari waktu sebenarnya. Ini bikin kamu lebih fokus.\n\n### 5. Know When to Stop\n\n**Tanda harus istirahat:**\n- Mata perih dan berair\n- Mulai typo terus\n- StackOverflow udah dibuka 20 tab\n- Lupa mau ngapain di line ini\n\n---\n\n## Penutup\n\nNight coding itu asik, tapi jangan sampe ganggu kesehatan. Listen to your body!',
+            label: 'Tips Post',
+            language: 'markdown'
+        },
+    ]}
+    copyButton
+/>
+
+---
+
+### Contoh 3: Artikel Career dengan Quotes dan Link
+
+<CodeBlock className="my-10"
+    compact
+    codeInstances={[
+        {
+            code: '---\ntitle: "Kenapa Imposter Syndrome Itu Normal"\npublishedAt: "2026-02-02"\nsummary: "Semua programmer pernah ngerasa nggak layak. Ini cara ngadepinnya."\ntag: "Career & Mindset"\n---\n\nPernah nggak sih kamu ngerasa:\n\n> *\"Kok gue nggak sejago mereka ya?\"*\n> *\"Pasti nanti diketawain kalo liat code gue.\"*\n> *\"Gue beneran developer atau cuma hoki dapet kerjaan?\"*\n\nSelamat, kamu mengalami **Imposter Syndrome**.\n\n## Fakta: Semua Orang Ngerasain\n\nDari junior sampai senior, dari startup sampai Big Tech — semua pernah. Bedanya, yang senior udah belajar ngadepinnya.\n\n### Kenapa Terjadi?\n\n1. **Dunning-Kruger Effect** — Yang baru tahu dikit malah pede, yang udah jago sadar seberapa banyak yang belum diketahui.\n2. **Sosmed Effect** — Liat highlight reel orang lain, bandingin sama behind-the-scenes kita sendiri.\n3. **Tech yang Gede** — Industri tech luas banget, mustahil ngerti semuanya.\n\n## Cara Mengatasi\n\n### Document Your Wins\n\nSimpan:\n- Feedback positif dari rekan/tim lead\n- Project yang berhasil diselesaikan\n- Bug yang berhasil di-fix setelah berjam-jam\n\n### Compare with Your Past Self\n\nBukan dengan orang lain, tapi dengan diri kamu 6 bulan lalu. Pasti ada progress.\n\n### Talk About It\n\nCerita sama sesama developer. Kamu akan kaget seberapa umum perasaan ini.\n\n## Resources\n\nBaca juga:\n- [The Impostor Handbook](https://www.google.com/search?q=impostor+handbook) — Buku klasik tentang topik ini\n- [Dev.to Community](https://dev.to) — Banyak cerita relatable\n\n---\n\n> *\"You belong here. Your code runs, your solutions work, and you are growing.\"*\n\n---',
+            label: 'Career Post',
+            language: 'markdown'
+        },
+    ]}
+    copyButton
+/>
+
+---
+
+## 5. Tips dan Best Practices
+
+### Struktur File Blog
+
+```
+src/app/blog/posts/
+├── nama-file-blog.mdx          # Gunakan kebab-case
+├── judul-panjang-blog.mdx      # Semua lowercase, spasi jadi hyphen
+└── BLOG_WRITING_GUIDE.mdx      # Dokumentasi ini
+```
+
+### Naming Convention File
+
+- ✅ `tips-belajar-react.mdx`
+- ✅ `kenapa-vue-keren.mdx`
+- ❌ `Tips Belajar React.mdx` (ada spasi)
+- ❌ `tips_belajar_react.mdx` (pake underscore)
+
+### Penulisan Judul
+
+- **Capitalize each word** untuk title di frontmatter
+- Gunakan **quote** jika ada karakter khusus
+- Maksimal 60-70 karakter untuk SEO yang baik
+
+```yaml
+# ✅ Bagus
+title: "Cara Belajar React untuk Pemula"
+
+# ✅ Dengan karakter khusus
+title: "Kenapa 'useEffect' Itu Penting"
+
+# ❌ Terlalu panjang
+title: "Panduan Lengkap Belajar React dari Nol Sampai Mahir dengan Next.js dan TypeScript"
+```
+
+### Penulisan Summary
+
+- 1-2 kalimat saja
+- Maksimal 150-160 karakter
+- Jelaskan **value** yang didapat pembaca
+- Gunakan kata kunci yang relevan
+
+```yaml
+# ✅ Bagus
+summary: "Pelajari 5 cara debug efektif yang sering dipakai developer senior."
+
+# ❌ Terlalu pendek
+summary: "Tips debug"
+
+# ❌ Terlalu panjang
+summary: "Dalam artikel ini kita akan membahas banyak sekali hal tentang debugging dan bagaimana cara melakukannya dengan baik dan benar sesuai best practices..."
+```
+
+### Format Tanggal
+
+Selalu gunakan format **YYYY-MM-DD**:
+
+```yaml
+# ✅ Benar
+publishedAt: "2026-02-02"
+
+# ❌ Salah
+publishedAt: "02/02/2026"
+publishedAt: "2 Februari 2026"
+```
+
+### Spacing dan Margin
+
+- Gunakan `className="my-10"` atau `className="my-24"` untuk CodeBlock
+- `my-10` = margin 40px (kecil)
+- `my-24` = margin 96px (besar)
+- Selalu ada baris kosong sebelum dan sesudah heading
+
+### Penggunaan CodeBlock yang Efektif
+
+```markdown
+<!-- ✅ Bagus: Kode relevan dan ada konteks -->
+Berikut cara mendeklarasikan state di React:
+
+<CodeBlock className="my-10"
+    compact
+    codeInstances={[
+        {
+            code: 'const [count, setCount] = useState(0)',
+            label: 'React',
+            language: 'js'
+        },
+    ]}
+    copyButton
+/>
+
+<!-- ❌ Kurang baik: Kode tanpa konteks -->
+<CodeBlock ... /> <!-- Tiba-tiba muncul tanpa penjelasan -->
+```
+
+### Heading Hierarchy
+
+```markdown
+# H1 - Jangan dipakai (sudah ada dari title)
+
+## H2 - Gunakan untuk section utama
+
+### H3 - Gunakan untuk subsection
+
+#### H4 - Gunakan jika perlu detail lebih dalam
+```
+
+### Quotes yang Efektif
+
+Gunakan blockquote (`>`) untuk:
+- Highlight insight penting
+- Kutipan dari orang lain
+- Fakta menarik yang ingin ditekankan
+
+```markdown
+> **Key Takeaway:** Fokus ke progress, bukan perfection.
+```
+
+### Link yang Baik
+
+```markdown
+<!-- Internal link -->
+Baca juga [pengalaman saya](/blog/hari-pertama-jadi-developer)
+
+<!-- External link (otomatis tab baru) -->
+Referensi dari [MDN Web Docs](https://developer.mozilla.org)
+
+<!-- Link ke heading (anchor) -->
+[Lompat ke tips](#tips-produktif)
+```
+
+### Checklist Sebelum Publish
+
+- [ ] Frontmatter lengkap dan valid
+- [ ] Tanggal `publishedAt` sudah benar
+- [ ] Tag sudah sesuai kategori
+- [ ] Semua link berfungsi
+- [ ] Gambar (jika ada) sudah di-upload ke `public/images/`
+- [ ] Tidak ada typo berarti
+- [ ] CodeBlock bisa di-copy
+- [ ] Preview di local berjalan dengan baik
+
+---
+
+## Troubleshooting
+
+### Gambar Tidak Muncul
+
+- Pastikan path benar: `/images/nama-file.png`
+- Jangan pakai `./` atau `../`
+- File harus ada di folder `public/images/`
+
+### CodeBlock Error
+
+- Pastikan prop `codeInstances` adalah array
+- Setiap item harus punya `code`, `label`, dan `language`
+- Gunakan backtick dalam string dengan escape atau template literal
+
+### Heading ID Tidak Berfungsi
+
+- Pastikan tidak ada karakter khusus di heading
+- ID otomatis dibuat dari teks heading
+- Cek di inspect element untuk melihat ID yang dihasilkan
+
+---
+
+## Referensi Cepat
+
+### Template Blog Kosong
+
+<CodeBlock className="my-10"
+    compact
+    codeInstances={[
+        {
+            code: '---\ntitle: ""\npublishedAt: ""\nsummary: ""\ntag: ""\n---\n\n## Introduction\n\nTulis pembukaan di sini...\n\n## Section 1\n\nKonten utama...\n\n### Subsection\n\nDetail lebih lanjut...\n\n## Penutup\n\nKesimpulan dan call-to-action...\n\n---',
+            label: 'Template',
+            language: 'markdown'
+        },
+    ]}
+    copyButton
+/>
+
+### Daftar Tag yang Tersedia
+
+| Tag | Gunakan untuk |
+|-----|---------------|
+| `Journal` | Curhat, pengalaman pribadi, cerita |
+| `Tips` | Tutorial, panduan, how-to |
+| `Career & Mindset` | Karir, motivasi, pengembangan diri |
+| `Documentation` | Dokumentasi teknis |
+
+---
+
+> **Selamat menulis!** 🚀
+>
+> *"Tulisan yang bagus berawal dari tulisan yang selesai."*
+
+---
+
+*Dokumentasi ini terakhir diupdate: 2 Februari 2026*
