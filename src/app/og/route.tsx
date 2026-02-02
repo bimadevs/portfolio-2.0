@@ -10,7 +10,12 @@ export async function GET(request: Request) {
   const font = fetch(new URL("../../../public/fonts/Inter.ttf", import.meta.url)).then((res) =>
     res.arrayBuffer(),
   );
-  const fontData = await font;
+  const image = fetch(new URL("../../../public/images/bima4.jpeg", import.meta.url)).then((res) =>
+    res.arrayBuffer(),
+  );
+
+  const [fontData, imageData] = await Promise.all([font, image]);
+  const imageSrc = `data:image/jpeg;base64,${Buffer.from(imageData).toString("base64")}`;
 
   return new ImageResponse(
     <div
@@ -31,19 +36,6 @@ export async function GET(request: Request) {
           background:
             "radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3), transparent 50%), radial-gradient(circle at 80% 80%, rgba(255, 103, 145, 0.3), transparent 50%)",
           opacity: 0.6,
-        }}
-      />
-
-      {/* Grid pattern overlay */}
-      <div
-        style={{
-          position: "absolute",
-          width: "100%",
-          height: "100%",
-          backgroundImage:
-            "linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px)",
-          backgroundSize: "50px 50px",
-          opacity: 0.3,
         }}
       />
 
@@ -86,7 +78,7 @@ export async function GET(request: Request) {
                 backdropFilter: "blur(10px)",
                 padding: "12px 24px",
                 borderRadius: "50px",
-                width: "fit-content",
+                alignSelf: "flex-start",
                 border: "2px solid rgba(255, 255, 255, 0.2)",
               }}
             >
@@ -186,7 +178,7 @@ export async function GET(request: Request) {
                   }}
                 />
                 <img
-                  src={"https://" + baseURL + "/images/bima4.jpeg"}
+                src={imageSrc}
                   style={{
                     width: "100px",
                     height: "100px",
