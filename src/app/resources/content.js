@@ -15,7 +15,7 @@ const person = {
 
 const newsletter = {
   display: false,
-  title: <>Subscribe to {person.firstName}'s Newsletter</>,
+  title: <>Subscribe to {person.firstName}&apos;s Newsletter</>,
   description: (
     <>
       I occasionally write about design, technology, and share thoughts on the intersection of
@@ -56,7 +56,7 @@ const home = {
   headline: "FullStack Developer",
   subline: (
     <>
-      I'm Bima, a FullStack Developer from <InlineCode>Indonesia</InlineCode>, where I craft Modern
+      I&apos;m Bima, a FullStack Developer from <InlineCode>Indonesia</InlineCode>, where I craft Modern
       <br /> Website. After hours, I build my own projects.
     </>
   ),
