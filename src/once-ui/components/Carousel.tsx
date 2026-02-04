@@ -122,6 +122,16 @@ const Carousel: React.FC<CarouselProps> = ({
                   cursor="interactive"
                   fillWidth
                   height="2"
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Go to slide ${index + 1}`}
+                  aria-current={activeIndex === index ? "true" : undefined}
+                  onKeyDown={(e: React.KeyboardEvent) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      handleControlClick(index);
+                    }
+                  }}
                 ></Flex>
               ))}
             </Flex>
@@ -139,6 +149,16 @@ const Carousel: React.FC<CarouselProps> = ({
                   padding="4"
                   width="80"
                   height="80"
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Go to slide ${index + 1}`}
+                  aria-current={activeIndex === index ? "true" : undefined}
+                  onKeyDown={(e: React.KeyboardEvent) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      handleControlClick(index);
+                    }
+                  }}
                 >
                   <SmartImage
                     alt={image.alt}
