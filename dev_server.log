@@ -7,28 +7,51 @@
 
  ✓ Starting...
    automatically enabled Fast Refresh for 1 custom loader
- ✓ Ready in 1897ms
- ○ Compiling / ...
-request to https://fonts.gstatic.com/s/sourcecodepro/v31/HI_SiYsKILxRpg3hIP6sJ7fM7PqlOevWnsUnxlC9.woff2 failed, reason:
-
-Retrying 1/3...
-request to https://fonts.gstatic.com/s/sourcecodepro/v31/HI_SiYsKILxRpg3hIP6sJ7fM7PqlMOvWnsUnxlC9.woff2 failed, reason:
-
-Retrying 1/3...
-request to https://fonts.gstatic.com/s/sourcecodepro/v31/HI_SiYsKILxRpg3hIP6sJ7fM7PqlMevWnsUnxlC9.woff2 failed, reason:
-
-Retrying 1/3...
-request to https://fonts.gstatic.com/s/sourcecodepro/v31/HI_SiYsKILxRpg3hIP6sJ7fM7PqlPuvWnsUnxlC9.woff2 failed, reason:
-
-Retrying 1/3...
-request to https://fonts.gstatic.com/s/sourcecodepro/v31/HI_SiYsKILxRpg3hIP6sJ7fM7PqlMuvWnsUnxlC9.woff2 failed, reason:
-
-Retrying 1/3...
-request to https://fonts.gstatic.com/s/sourcecodepro/v31/HI_SiYsKILxRpg3hIP6sJ7fM7PqlM-vWnsUnxlC9.woff2 failed, reason:
-
-Retrying 1/3...
-request to https://fonts.gstatic.com/s/sourcecodepro/v31/HI_SiYsKILxRpg3hIP6sJ7fM7PqlPevWnsUnxg.woff2 failed, reason:
-
-Retrying 1/3...
- ✓ Compiled / in 89.8s (2264 modules)
- GET / 200 in 37882ms
+ ✓ Ready in 1947ms
+ ○ Compiling /about ...
+ ✓ Compiled /about in 80.2s (1418 modules)
+Warning: Each child in a list should have a unique "key" prop. See https://reactjs.org/link/warning-keys for more information.
+ GET /about 200 in 126ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 13s (976 modules)
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 13463ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 29ms
+Warning: Each child in a list should have a unique "key" prop. See https://reactjs.org/link/warning-keys for more information.
+ GET /about 200 in 85ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 56ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 126ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 118ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 31ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 39ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 35ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 33ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 32ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 28ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 25ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 26ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 26ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 23ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 24ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 26ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 25ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 32ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 24ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 26ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 30ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 44ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 34ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 24ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 40ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 29ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 36ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 28ms
+ GET /about 200 in 54ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 44ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 164ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 28ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 40ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 372ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 80ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 346ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 38ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 28ms
