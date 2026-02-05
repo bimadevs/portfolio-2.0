@@ -37,10 +37,13 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "dotenv": "^17.2.3",
     "eslint": "^8.57.1",
     "eslint-config-next": "^14.2.16",
+    "openai": "^6.17.0",
     "postcss-custom-media": "^10.0.7",
     "postcss-flexbugs-fixes": "^5.0.2",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }
