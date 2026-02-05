@@ -167,6 +167,7 @@ export default function About() {
                   data-border="rounded"
                   variant="secondary"
                   icon="chevronRight"
+                  aria-label="Schedule a call"
                 />
               </Flex>
             )}
@@ -202,6 +203,7 @@ export default function About() {
                           href={item.link}
                           icon={item.icon}
                           variant="secondary"
+                          aria-label={item.name}
                         />
                       </>
                     ),
