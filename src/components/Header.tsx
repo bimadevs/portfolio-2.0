@@ -18,16 +18,19 @@ const TimeDisplay: React.FC<TimeDisplayProps> = ({ timeZone, locale = "en-GB" })
   const [currentTime, setCurrentTime] = useState("");
 
   useEffect(() => {
+    // ⚡ Bolt: Instantiating Intl.DateTimeFormat is expensive.
+    // Creating it once outside the interval loop saves ~60 creations per minute.
+    const formatter = new Intl.DateTimeFormat(locale, {
+      timeZone,
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false,
+    });
+
     const updateTime = () => {
       const now = new Date();
-      const options: Intl.DateTimeFormatOptions = {
-        timeZone,
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: false,
-      };
-      const timeString = new Intl.DateTimeFormat(locale, options).format(now);
+      const timeString = formatter.format(now);
       setCurrentTime(timeString);
     };
 
