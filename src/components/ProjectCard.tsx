@@ -67,6 +67,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             <Flex gap="24" wrap>
               {content?.trim() && (
                 <SmartLink
+                  aria-label={`Read more about ${title}`}
                   suffixIcon="arrowRight"
                   style={{ margin: "0", width: "fit-content" }}
                   href={href}
@@ -76,6 +77,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               )}
               {link && (
                 <SmartLink
+                  aria-label={`View project: ${title}`}
                   suffixIcon="arrowUpRightFromSquare"
                   style={{ margin: "0", width: "fit-content" }}
                   href={link}
