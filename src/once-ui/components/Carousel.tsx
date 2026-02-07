@@ -29,15 +29,8 @@ const Carousel: React.FC<CarouselProps> = ({
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [isTransitioning, setIsTransitioning] = useState(revealedByDefault);
   const [initialTransition, setInitialTransition] = useState(revealedByDefault);
-  const nextImageRef = useRef<HTMLImageElement | null>(null);
+  const [nextIndexToPreload, setNextIndexToPreload] = useState<number | null>(null);
   const transitionTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
-
-  const preloadNextImage = (nextIndex: number) => {
-    if (nextIndex >= 0 && nextIndex < images.length) {
-      nextImageRef.current = new Image();
-      nextImageRef.current.src = images[nextIndex].src;
-    }
-  };
 
   const handleImageClick = () => {
     if (images.length > 1) {
@@ -48,12 +41,13 @@ const Carousel: React.FC<CarouselProps> = ({
 
   const handleControlClick = (nextIndex: number) => {
     if (nextIndex !== activeIndex && !transitionTimeoutRef.current) {
-      preloadNextImage(nextIndex);
+      setNextIndexToPreload(nextIndex);
 
       setIsTransitioning(false);
 
       transitionTimeoutRef.current = setTimeout(() => {
         setActiveIndex(nextIndex);
+        setNextIndexToPreload(null);
 
         setTimeout(() => {
           setIsTransitioning(true);
@@ -174,6 +168,28 @@ const Carousel: React.FC<CarouselProps> = ({
             </Scroller>
           )}
         </>
+      )}
+      {nextIndexToPreload !== null && images[nextIndexToPreload] && (
+        <Flex
+          style={{
+            position: "fixed",
+            top: "-9999px",
+            left: "-9999px",
+            width: "1px",
+            height: "1px",
+            overflow: "hidden",
+            visibility: "hidden",
+            pointerEvents: "none",
+          }}
+        >
+          <SmartImage
+            priority
+            sizes={sizes}
+            alt={images[nextIndexToPreload].alt}
+            aspectRatio={aspectRatio}
+            src={images[nextIndexToPreload].src}
+          />
+        </Flex>
       )}
     </Flex>
   );
