@@ -48,7 +48,7 @@ I work with a range of technologies and frameworks, focusing on both front-end a
 - **Back-End**: Node.js, RESTful APIs
 - **Languages**: TypeScript, JavaScript, Python
 - **Tools & Platforms**: Git, VS Code
-- **Database**: MySQL,
+- **Database**: MySQL,Postgresql
 
 <div align="center">
   <img src="https://github.com/devicons/devicon/blob/master/icons/nextjs/nextjs-original-wordmark.svg" title="nextjs" alt="nextjs" width="40" height="40"/>&nbsp;
@@ -64,6 +64,7 @@ I work with a range of technologies and frameworks, focusing on both front-end a
   <img src="https://github.com/devicons/devicon/blob/master/icons/git/git-original-wordmark.svg" title="Git" **alt="Git" width="40" height="40"/>
   <img src="https://github.com/devicons/devicon/blob/master/icons/vscode/vscode-plain-wordmark.svg" title="VsCode" alt="VsCode" width="40" height="40"/>&nbsp;
   <img src="https://github.com/devicons/devicon/blob/master/icons/mysql/mysql-original-wordmark.svg" title="MySQL"  alt="MySQL" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/postgresql/postgresql-original-wordmark.svg" title="postgresql"  alt="postgresql" width="40" height="40"/>&nbsp;
 </div>
 
 I'm continuously learning and keeping up-to-date with the latest advancements in web development to deliver cutting-edge solutions.
@@ -73,20 +74,12 @@ I'm continuously learning and keeping up-to-date with the latest advancements in
 ## 🚀 Featured Projects
 
 <div align="center">
-<img width="282" src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=bimadevs&repo=deep-talk-ai&theme=react&bg_color=273849&title_color=F85D7F&icon_color=F8D866&hide_border=true&show_icons=true" alt="AI Deep Talk">
   
-<img width="282" src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=bimadevs&repo=3d-builder&theme=react&bg_color=273849&title_color=F85D7F&icon_color=F8D866&hide_border=true&show_icons=true" alt="3D Builder">
-
-<img width="282" src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=bimadevs&repo=bimsc&theme=react&bg_color=273849&title_color=F85D7F&icon_color=F8D866&hide_border=true&show_icons=true" alt="Library Open Source BimSC">
-
-<img width="282" src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=bimadevs&repo=image-to-code&theme=react&bg_color=273849&title_color=F85D7F&icon_color=F8D866&hide_border=true&show_icons=true" alt="Image to Code">
+<img width="282" src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=bimadevs&repo=bimsc&theme=react&bg_color=273849&title_color=F85D7F&icon_color=F8D866&hide_border=true&show_icons=true" alt="BimSC">
 
 <img width="282" src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=bimadevs&repo=bimsui&theme=react&bg_color=273849&title_color=F85D7F&icon_color=F8D866&hide_border=true&show_icons=true" alt="Library UI Component BimsUI">
 
 <img width="282" src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=bimadevs&repo=pilihku-E-voting&theme=react&bg_color=273849&title_color=F85D7F&icon_color=F8D866&hide_border=true&show_icons=true" alt="Web Voting">
-
-
-<img width="282" src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=bimadevs&repo=nextjs-url-shortener&theme=react&bg_color=273849&title_color=F85D7F&icon_color=F8D866&hide_border=true&show_icons=true" alt="NextJs URL Shortener">
 
 </div>
 
