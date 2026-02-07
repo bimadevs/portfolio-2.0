@@ -1,0 +1,18 @@
+
+> BimaDev Portfolio@1.3.0 dev /app
+> next dev
+
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3000
+
+ ✓ Starting...
+   automatically enabled Fast Refresh for 1 custom loader
+ ✓ Ready in 1923ms
+ ○ Compiling /about ...
+ ✓ Compiled /about in 77.5s (1418 modules)
+Warning: Each child in a list should have a unique "key" prop. See https://reactjs.org/link/warning-keys for more information.
+ GET /about 200 in 20327ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 12.8s (976 modules)
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 13364ms
+ GET /_next/static/css/app/about/images/logo-color.png 404 in 35ms
