@@ -18,6 +18,20 @@ export interface SmartImageProps extends React.ComponentProps<typeof Flex> {
   priority?: boolean;
 }
 
+const YOUTUBE_REGEX =
+  /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+
+const isYouTubeVideo = (url: string) => {
+  return YOUTUBE_REGEX.test(url);
+};
+
+const getYouTubeEmbedUrl = (url: string) => {
+  const match = url.match(YOUTUBE_REGEX);
+  return match
+    ? `https://www.youtube.com/embed/${match[1]}?controls=0&rel=0&modestbranding=1`
+    : "";
+};
+
 const SmartImage: React.FC<SmartImageProps> = ({
   aspectRatio,
   height,
@@ -64,6 +78,16 @@ const SmartImage: React.FC<SmartImageProps> = ({
   }, [isEnlarged]);
 
   const calculateTransform = () => {
+    // ⚡ Bolt: Performance optimization
+    // Avoid getBoundingClientRect() when not enlarged to prevent layout thrashing
+    // and reflows during every render.
+    if (!isEnlarged) {
+      return {
+        transform: "translate(0, 0) scale(1)",
+        transition: "all 0.3s ease-in-out",
+      };
+    }
+
     if (!imageRef.current) return {};
 
     const rect = imageRef.current.getBoundingClientRect();
@@ -75,27 +99,10 @@ const SmartImage: React.FC<SmartImageProps> = ({
     const translateY = (window.innerHeight - rect.height) / 2 - rect.top;
 
     return {
-      transform: isEnlarged
-        ? `translate(${translateX}px, ${translateY}px) scale(${scale})`
-        : "translate(0, 0) scale(1)",
+      transform: `translate(${translateX}px, ${translateY}px) scale(${scale})`,
       transition: "all 0.3s ease-in-out",
-      zIndex: isEnlarged ? 2 : undefined,
+      zIndex: 2,
     };
-  };
-
-  const isYouTubeVideo = (url: string) => {
-    const youtubeRegex =
-      /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
-    return youtubeRegex.test(url);
-  };
-
-  const getYouTubeEmbedUrl = (url: string) => {
-    const match = url.match(
-      /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/,
-    );
-    return match
-      ? `https://www.youtube.com/embed/${match[1]}?controls=0&rel=0&modestbranding=1`
-      : "";
   };
 
   const isVideo = src?.endsWith(".mp4");
