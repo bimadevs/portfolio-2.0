@@ -77,6 +77,21 @@ const Carousel: React.FC<CarouselProps> = ({
     <Flex fillWidth gap="12" direction="column" {...rest}>
       <RevealFx
         onClick={handleImageClick}
+        onKeyDown={(e) => {
+          if (images.length > 1) {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              handleImageClick();
+            }
+          }
+        }}
+        role={images.length > 1 ? "button" : undefined}
+        tabIndex={images.length > 1 ? 0 : undefined}
+        aria-label={
+          images.length > 1
+            ? `Next slide: ${images[activeIndex]?.alt}`
+            : undefined
+        }
         fillWidth
         trigger={isTransitioning}
         translateY="16"
