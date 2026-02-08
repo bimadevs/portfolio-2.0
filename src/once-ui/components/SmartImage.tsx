@@ -64,6 +64,15 @@ const SmartImage: React.FC<SmartImageProps> = ({
   }, [isEnlarged]);
 
   const calculateTransform = () => {
+    // Optimization: Skip expensive calculation if not enlarged to avoid forced reflows
+    if (!isEnlarged) {
+      return {
+        transform: "translate(0, 0) scale(1)",
+        transition: "all 0.3s ease-in-out",
+        zIndex: undefined,
+      };
+    }
+
     if (!imageRef.current) return {};
 
     const rect = imageRef.current.getBoundingClientRect();
@@ -75,11 +84,9 @@ const SmartImage: React.FC<SmartImageProps> = ({
     const translateY = (window.innerHeight - rect.height) / 2 - rect.top;
 
     return {
-      transform: isEnlarged
-        ? `translate(${translateX}px, ${translateY}px) scale(${scale})`
-        : "translate(0, 0) scale(1)",
+      transform: `translate(${translateX}px, ${translateY}px) scale(${scale})`,
       transition: "all 0.3s ease-in-out",
-      zIndex: isEnlarged ? 2 : undefined,
+      zIndex: 2,
     };
   };
 
