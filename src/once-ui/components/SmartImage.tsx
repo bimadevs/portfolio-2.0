@@ -5,6 +5,9 @@ import Image from "next/image";
 
 import { Flex, Skeleton } from "@/once-ui/components";
 
+const YOUTUBE_REGEX =
+  /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+
 export interface SmartImageProps extends React.ComponentProps<typeof Flex> {
   aspectRatio?: string;
   height?: number;
@@ -64,6 +67,14 @@ const SmartImage: React.FC<SmartImageProps> = ({
   }, [isEnlarged]);
 
   const calculateTransform = () => {
+    const defaultTransform = {
+      transform: "translate(0, 0) scale(1)",
+      transition: "all 0.3s ease-in-out",
+      zIndex: undefined,
+    };
+
+    if (!isEnlarged) return defaultTransform;
+
     if (!imageRef.current) return {};
 
     const rect = imageRef.current.getBoundingClientRect();
@@ -75,24 +86,18 @@ const SmartImage: React.FC<SmartImageProps> = ({
     const translateY = (window.innerHeight - rect.height) / 2 - rect.top;
 
     return {
-      transform: isEnlarged
-        ? `translate(${translateX}px, ${translateY}px) scale(${scale})`
-        : "translate(0, 0) scale(1)",
+      transform: `translate(${translateX}px, ${translateY}px) scale(${scale})`,
       transition: "all 0.3s ease-in-out",
-      zIndex: isEnlarged ? 2 : undefined,
+      zIndex: 2,
     };
   };
 
   const isYouTubeVideo = (url: string) => {
-    const youtubeRegex =
-      /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
-    return youtubeRegex.test(url);
+    return YOUTUBE_REGEX.test(url);
   };
 
   const getYouTubeEmbedUrl = (url: string) => {
-    const match = url.match(
-      /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/,
-    );
+    const match = url.match(YOUTUBE_REGEX);
     return match
       ? `https://www.youtube.com/embed/${match[1]}?controls=0&rel=0&modestbranding=1`
       : "";

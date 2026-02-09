@@ -5,3 +5,7 @@
 ## 2025-05-23 - Optimizing Carousel Image Preloading
 **Learning:** Manual image preloading using `new Image()` bypasses `next/image` optimizations, leading to double downloads (unoptimized original + optimized variant).
 **Action:** Use a hidden `SmartImage` (or `next/image`) with `priority` prop to preload the next slide. This ensures the browser downloads the exact optimized URL that will be displayed.
+
+## 2025-05-24 - Avoiding Layout Thrashing in SmartImage
+**Learning:** Calling `getBoundingClientRect()` inside a component's render logic forces synchronous reflows on every render.
+**Action:** Guard expensive layout calculations with a state check (e.g., `if (!isEnlarged) return defaultTransform`) to skip them when not necessary.
