@@ -1,0 +1,3 @@
+## 2024-05-23 - Accessibility in Form Inputs
+**Learning:** `aria-describedby` is often overlooked when linking descriptions to inputs. Simply rendering a description with an ID isn't enough; it must be explicitly linked in the `aria-describedby` attribute of the input. Also, using labels as placeholders (`labelAsPlaceholder`) can strip semantic meaning for screen readers if not compensated with an `aria-label`.
+**Action:** When creating or modifying input components, always ensure `aria-describedby` includes IDs for both error messages and descriptions. If a visual label is hidden or used as a placeholder, ensure `aria-label` provides the necessary context.
