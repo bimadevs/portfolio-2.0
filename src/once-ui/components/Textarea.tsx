@@ -125,6 +125,13 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
 
     const displayError = validationError || errorMessage;
 
+    const ariaDescribedBy = [
+      displayError ? `${id}-error` : undefined,
+      description ? `${id}-description` : undefined,
+    ]
+      .filter(Boolean)
+      .join(" ");
+
     const textareaClassNames = classNames(
       styles.input,
       styles.textarea,
@@ -189,8 +196,11 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
               onFocus={handleFocus}
               onBlur={handleBlur}
               className={textareaClassNames}
-              aria-describedby={displayError ? `${id}-error` : undefined}
+              aria-describedby={ariaDescribedBy || undefined}
               aria-invalid={!!displayError}
+              aria-label={
+                props["aria-label"] || (labelAsPlaceholder ? label : undefined)
+              }
               style={{
                 ...style,
                 resize: lines === "auto" ? "none" : resize,
