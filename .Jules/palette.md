@@ -9,3 +9,4 @@
 ## 2025-05-20 - Ambiguous Link Text
 **Learning:** Generic link text like "Read more" or "View project" creates confusion for screen reader users when navigated out of context.
 **Action:** Always attach descriptive `aria-label` props to generic links (e.g., `aria-label={`Read more about ${title}`}`).
+\n## 2025-05-23 - [Accessible Placeholder Labels]\n**Learning:** Component library inputs hide labels when `labelAsPlaceholder` is used, making them inaccessible to screen readers as placeholders are not sufficient accessible names.\n**Action:** Ensure custom inputs with hidden labels programmatically assign `aria-label` using the hidden label text.
