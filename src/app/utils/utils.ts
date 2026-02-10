@@ -1,6 +1,8 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { cache } from "react";
+import { notFound } from 'next/navigation';
 
 type Team = {
   name: string;
@@ -19,8 +21,6 @@ type Metadata = {
   team: Team[];
   link?: string;
 };
-
-import { notFound } from 'next/navigation';
 
 function getMDXFiles(dir: string) {
   if (!fs.existsSync(dir)) {
@@ -52,7 +52,7 @@ function readMDXFile(filePath: string) {
   return { metadata, content };
 }
 
-function getMDXData(dir: string) {
+const getMDXData = cache((dir: string) => {
   const mdxFiles = getMDXFiles(dir);
   return mdxFiles.map((file) => {
     const { metadata, content } = readMDXFile(path.join(dir, file));
@@ -64,7 +64,7 @@ function getMDXData(dir: string) {
       content,
     };
   });
-}
+});
 
 export function getPosts(customPath = ["", "", "", ""]) {
   const postsDir = path.join(process.cwd(), ...customPath);
