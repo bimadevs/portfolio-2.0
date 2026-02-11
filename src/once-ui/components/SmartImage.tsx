@@ -3,7 +3,7 @@
 import React, { CSSProperties, useState, useRef, useEffect } from "react";
 import Image from "next/image";
 
-import { Flex, Skeleton } from "@/once-ui/components";
+import { Flex, Skeleton, IconButton } from "@/once-ui/components";
 
 export interface SmartImageProps extends React.ComponentProps<typeof Flex> {
   aspectRatio?: string;
@@ -37,6 +37,13 @@ const SmartImage: React.FC<SmartImageProps> = ({
   const handleClick = () => {
     if (enlarge) {
       setIsEnlarged(!isEnlarged);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (enlarge && (e.key === "Enter" || e.key === " ")) {
+      e.preventDefault();
+      handleClick();
     }
   };
 
@@ -110,6 +117,9 @@ const SmartImage: React.FC<SmartImageProps> = ({
         position="relative"
         zIndex={0}
         cursor={enlarge ? "interactive" : ""}
+        role={enlarge ? "button" : undefined}
+        tabIndex={enlarge ? 0 : undefined}
+        onKeyDown={handleKeyDown}
         style={{
           outline: "none",
           isolation: "isolate",
@@ -179,8 +189,25 @@ const SmartImage: React.FC<SmartImageProps> = ({
           style={{
             width: "100vw",
             height: "100vh",
+            zIndex: 100,
           }}
         >
+          <IconButton
+            icon="close"
+            variant="ghost"
+            style={{
+              position: "absolute",
+              top: "1rem",
+              right: "1rem",
+              zIndex: 1,
+            }}
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsEnlarged(false);
+            }}
+            tooltip="Close"
+            tooltipPosition="left"
+          />
           <Flex
             position="relative"
             style={{
