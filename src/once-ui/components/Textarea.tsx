@@ -189,7 +189,17 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
               onFocus={handleFocus}
               onBlur={handleBlur}
               className={textareaClassNames}
-              aria-describedby={displayError ? `${id}-error` : undefined}
+              aria-describedby={
+                [
+                  displayError ? `${id}-error` : undefined,
+                  description ? `${id}-description` : undefined,
+                ]
+                  .filter(Boolean)
+                  .join(" ") || undefined
+              }
+              aria-label={
+                labelAsPlaceholder && !props["aria-label"] ? label : props["aria-label"]
+              }
               aria-invalid={!!displayError}
               style={{
                 ...style,

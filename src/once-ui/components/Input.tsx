@@ -163,7 +163,17 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
               onFocus={handleFocus}
               onBlur={handleBlur}
               className={inputClassNames}
-              aria-describedby={displayError ? `${id}-error` : undefined}
+              aria-describedby={
+                [
+                  displayError ? `${id}-error` : undefined,
+                  description ? `${id}-description` : undefined,
+                ]
+                  .filter(Boolean)
+                  .join(" ") || undefined
+              }
+              aria-label={
+                labelAsPlaceholder && !props["aria-label"] ? label : props["aria-label"]
+              }
               aria-invalid={!!displayError}
             />
             {!labelAsPlaceholder && (
