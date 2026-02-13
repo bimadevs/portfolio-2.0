@@ -20,6 +20,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, InputProps>((props, re
           icon={showPassword ? "eyeOff" : "eye"}
           size="s"
           type="button"
+          aria-label={showPassword ? "Hide password" : "Show password"}
         />
       }
     />
