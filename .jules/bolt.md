@@ -5,3 +5,7 @@
 ## 2025-05-23 - Optimizing Carousel Image Preloading
 **Learning:** Manual image preloading using `new Image()` bypasses `next/image` optimizations, leading to double downloads (unoptimized original + optimized variant).
 **Action:** Use a hidden `SmartImage` (or `next/image`) with `priority` prop to preload the next slide. This ensures the browser downloads the exact optimized URL that will be displayed.
+
+## 2025-05-24 - React Cache Memoization Pitfall
+**Learning:** `React.cache` uses reference equality for object arguments. Passing a new array literal (e.g., `['path', 'to']`) on every call bypasses the cache entirely.
+**Action:** Always wrap internal functions that accept primitive arguments (strings/numbers) with `React.cache`, or ensure object arguments are stable references.
