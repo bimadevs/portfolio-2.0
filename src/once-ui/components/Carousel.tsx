@@ -39,6 +39,15 @@ const Carousel: React.FC<CarouselProps> = ({
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (images.length > 1) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        handleImageClick();
+      }
+    }
+  };
+
   const handleControlClick = (nextIndex: number) => {
     if (nextIndex !== activeIndex && !transitionTimeoutRef.current) {
       setNextIndexToPreload(nextIndex);
@@ -77,6 +86,10 @@ const Carousel: React.FC<CarouselProps> = ({
     <Flex fillWidth gap="12" direction="column" {...rest}>
       <RevealFx
         onClick={handleImageClick}
+        onKeyDown={handleKeyDown}
+        role={images.length > 1 ? "button" : undefined}
+        tabIndex={images.length > 1 ? 0 : undefined}
+        aria-label={images.length > 1 ? "Next slide" : undefined}
         fillWidth
         trigger={isTransitioning}
         translateY="16"
