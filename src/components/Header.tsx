@@ -51,13 +51,13 @@ export const Header = () => {
 
   return (
     <>
-      <Fade hide="s" fillWidth position="fixed" height="80" zIndex={9} className="z-40" />
-      <Fade show="s" fillWidth position="fixed" bottom="0" to="top" height="80" zIndex={9} className="z-40" />
+      <Fade hide="s" fillWidth position="fixed" height="80" zIndex={40} className="z-40" />
+      <Fade show="s" fillWidth position="fixed" bottom="0" to="top" height="80" zIndex={40} className="z-40" />
       <Flex
         fitHeight
         className={classNames(styles.position, "z-40")}
         as="header"
-        zIndex={9}
+        zIndex={40}
         fillWidth
         padding="8"
         horizontal="center"
