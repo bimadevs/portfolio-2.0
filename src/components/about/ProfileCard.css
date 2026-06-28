@@ -269,7 +269,7 @@
     padding: 8px 16px;
     font-size: 14px;
     font-weight: 600;
-    color: rgb(65, 61, 61);
+    color: rgba(255, 255, 255, 0.9);
     cursor: pointer;
     transition: all 0.2s ease;
     backdrop-filter: blur(40px);
