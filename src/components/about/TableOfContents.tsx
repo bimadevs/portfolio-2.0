@@ -10,21 +10,18 @@ interface TableOfContentsProps {
     display: boolean;
     items: string[];
   }[];
-  about: {
-    tableOfContent: {
-      display: boolean;
-      subItems: boolean;
-    };
+  tableOfContent: {
+    display: boolean;
+    subItems: boolean;
   };
 }
 
-const TableOfContents: React.FC<TableOfContentsProps> = ({ structure, about }) => {
+const TableOfContents: React.FC<TableOfContentsProps> = ({ structure, tableOfContent }) => {
   const scrollTo = (id: string, offset: number) => {
     const element = document.getElementById(id);
     if (element) {
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.scrollY - offset;
-
       window.scrollTo({
         top: offsetPosition,
         behavior: "smooth",
@@ -32,7 +29,9 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ structure, about }) =
     }
   };
 
-  if (!about.tableOfContent.display) return null;
+  if (!tableOfContent.display) return null;
+
+  const visibleSections = structure.filter((section) => section.display);
 
   return (
     <Column
@@ -47,41 +46,38 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ structure, about }) =
       gap="32"
       hide="m"
     >
-      {structure
-        .filter((section) => section.display)
-        .map((section, sectionIndex) => (
-          <Column key={sectionIndex} gap="12">
-            <Flex
-              cursor="interactive"
-              className={styles.hover}
-              gap="8"
-              vertical="center"
-              onClick={() => scrollTo(section.title, 80)}
-            >
-              <Flex height="1" minWidth="16" background="neutral-strong"></Flex>
-              <Text>{section.title}</Text>
+      {visibleSections.map((section) => (
+        <Column key={section.title} gap="12">
+          <Flex
+            cursor="interactive"
+            className={styles.hover}
+            gap="8"
+            vertical="center"
+            onClick={() => scrollTo(section.title, 80)}
+          >
+            <Flex height="1" minWidth="16" background="neutral-strong"></Flex>
+            <Text>{section.title}</Text>
+          </Flex>
+          {tableOfContent.subItems && section.items.length > 0 && (
+            <Flex direction="column" gap="12" paddingLeft="24">
+              {section.items.map((item) => (
+                <Flex
+                  hide="l"
+                  key={item}
+                  style={{ cursor: "pointer" }}
+                  className={styles.hover}
+                  gap="12"
+                  vertical="center"
+                  onClick={() => scrollTo(item, 80)}
+                >
+                  <Flex height="1" minWidth="8" background="neutral-strong"></Flex>
+                  <Text>{item}</Text>
+                </Flex>
+              ))}
             </Flex>
-            {about.tableOfContent.subItems && (
-              <>
-                {section.items.map((item, itemIndex) => (
-                  <Flex
-                    hide="l"
-                    key={itemIndex}
-                    style={{ cursor: "pointer" }}
-                    className={styles.hover}
-                    gap="12"
-                    paddingLeft="24"
-                    vertical="center"
-                    onClick={() => scrollTo(item, 80)}
-                  >
-                    <Flex height="1" minWidth="8" background="neutral-strong"></Flex>
-                    <Text>{item}</Text>
-                  </Flex>
-                ))}
-              </>
-            )}
-          </Column>
-        ))}
+          )}
+        </Column>
+      ))}
     </Column>
   );
 };
