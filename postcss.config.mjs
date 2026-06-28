@@ -1,5 +1,6 @@
 export default {
   plugins: [
+    "@tailwindcss/postcss",
     ["@csstools/postcss-global-data", {
       files: ["src/once-ui/styles/breakpoints.scss"],
     }],
