@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import * as cookie from "cookie";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const cookies = cookie.parse(req.headers.cookie || "");
+  const cookies = cookie.parseCookie(req.headers.cookie || "");
 
   if (cookies.authToken === "authenticated") {
     return res.status(200).json({ authenticated: true });

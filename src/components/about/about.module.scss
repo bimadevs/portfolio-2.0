@@ -1,27 +1,253 @@
 .hover {
-    transition: var(--transition-micro-medium);
+  transition: var(--transition-micro-medium);
 
-    &:hover {
-        transform: translateX(var(--static-space-4));
-    }
+  &:hover {
+    transform: translateX(var(--static-space-4));
+  }
 }
 
 .avatar {
-    position: sticky;
-    height: fit-content;
-    top: var(--static-space-64);
+  position: sticky;
+  height: fit-content;
+  top: var(--static-space-64);
 }
 
+/* ── Hero Section ────────────────────────────────────── */
+.heroSection {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--static-space-80) var(--static-space-24);
+  gap: var(--static-space-48);
+}
+
+.heroLeft {
+  flex-shrink: 0;
+}
+
+.heroRight {
+  display: flex;
+  flex-direction: column;
+  gap: var(--static-space-12);
+  max-width: 480px;
+}
+
+.locationRow {
+  display: flex;
+  align-items: center;
+  gap: var(--static-space-8);
+  color: var(--color-neutral-weak);
+}
+
+.socialRow {
+  display: flex;
+  align-items: center;
+  gap: var(--static-space-8);
+  padding-top: var(--static-space-8);
+}
+
+/* ── About Intro Card ────────────────────────────────── */
+.aboutCard {
+  border: 1px solid var(--color-neutral-medium);
+  border-radius: var(--static-space-l);
+  padding: var(--static-space-40);
+  background: var(--color-surface-background);
+}
+
+/* ── Skills Grid ─────────────────────────────────────── */
+.skillGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--static-space-16);
+}
+
+.skillCard {
+  border: 1px solid var(--color-neutral-medium);
+  border-radius: var(--static-space-l);
+  padding: var(--static-space-24);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  background: var(--color-surface-background);
+
+  &:hover {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+  }
+}
+
+.skillImages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--static-space-12);
+  margin-top: var(--static-space-16);
+}
+
+/* ── Experience Timeline ─────────────────────────────── */
+.timeline {
+  position: relative;
+  padding-left: var(--static-space-32);
+}
+
+.timelineLine {
+  position: absolute;
+  left: 7px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--color-neutral-medium);
+}
+
+.timelineItem {
+  position: relative;
+  padding-bottom: var(--static-space-32);
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
+
+.timelineDot {
+  position: absolute;
+  left: calc(var(--static-space-32) * -1 + 4px);
+  top: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-brand-background-strong);
+}
+
+/* ── Stats Bar ───────────────────────────────────────── */
+.statCard {
+  border: 1px solid var(--color-neutral-medium);
+  border-radius: var(--static-space-l);
+  padding: var(--static-space-20);
+  text-align: center;
+  background: var(--color-surface-background);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.statNumber {
+  color: var(--color-brand-background-strong);
+}
+
+.statLabel {
+  color: var(--color-neutral-weak);
+}
+
+/* ── What I Do Cards ─────────────────────────────────── */
+.serviceCard {
+  border: 1px solid var(--color-neutral-medium);
+  border-radius: var(--static-space-l);
+  padding: var(--static-space-24);
+  background: var(--color-surface-background);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.serviceIcon {
+  color: var(--color-brand-weak);
+}
+
+/* ── Tech Stack ──────────────────────────────────────── */
+.techStackSubtitle {
+  color: var(--color-neutral-weak);
+  margin-bottom: var(--static-space-24);
+}
+
+.techBadge {
+  border: 1px solid var(--color-neutral-medium);
+  border-radius: var(--static-space-full);
+  padding: var(--static-space-12) var(--static-space-20);
+  background: var(--color-surface-background);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  }
+}
+
+/* ── Quote Section ───────────────────────────────────── */
+.quoteCard {
+  border: 1px solid var(--color-brand-alpha-medium);
+  border-radius: var(--static-space-l);
+  padding: var(--static-space-40);
+  background: var(--color-surface-background);
+  border-left: 3px solid var(--color-brand-background-strong);
+}
+
+.quoteText {
+  font-style: italic;
+  color: var(--color-neutral-weak);
+}
+
+.quoteAttribution {
+  color: var(--color-brand-weak);
+}
+
+/* ── CTA Section ─────────────────────────────────────── */
+.ctaSection {
+  text-align: center;
+  padding: var(--static-space-80) var(--static-space-24);
+  border: 1px solid var(--color-neutral-medium);
+  border-radius: var(--static-space-l);
+  background: var(--color-surface-background);
+}
+
+.ctaSocials {
+  display: flex;
+  justify-content: center;
+  gap: var(--static-space-12);
+  padding-top: var(--static-space-16);
+}
+
+/* ── Responsive ──────────────────────────────────────── */
 @media (--s) {
-    .avatar {
-        top: auto;
-    }
+  .heroSection {
+    min-height: auto;
+    flex-direction: column;
+    padding: var(--static-space-32) var(--static-space-16);
+    gap: var(--static-space-24);
+  }
 
-    .textAlign {
-        text-align: center;
-    }
+  .skillGrid {
+    grid-template-columns: 1fr;
+  }
 
-    .blockAlign {
-        align-self: center;
-    }
+  .textAlign {
+    text-align: center;
+  }
+
+  .blockAlign {
+    align-self: center;
+  }
+}
+
+@media (--m) {
+  .heroSection {
+    min-height: auto;
+    flex-direction: column;
+    padding: var(--static-space-40) var(--static-space-16);
+    gap: var(--static-space-32);
+  }
+
+  .skillGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (--l) {
+  .skillGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

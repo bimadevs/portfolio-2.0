@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import classNames from "classnames";
 
 import { Fade, Flex, Line, ToggleButton } from "@/once-ui/components";
 import styles from "@/components/Header.module.scss";
@@ -50,11 +51,11 @@ export const Header = () => {
 
   return (
     <>
-      <Fade hide="s" fillWidth position="fixed" height="80" zIndex={9} />
-      <Fade show="s" fillWidth position="fixed" bottom="0" to="top" height="80" zIndex={9} />
+      <Fade hide="s" fillWidth position="fixed" height="80" zIndex={9} className="z-40" />
+      <Fade show="s" fillWidth position="fixed" bottom="0" to="top" height="80" zIndex={9} className="z-40" />
       <Flex
         fitHeight
-        className={styles.position}
+        className={classNames(styles.position, "z-40")}
         as="header"
         zIndex={9}
         fillWidth
