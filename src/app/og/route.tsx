@@ -1,23 +1,26 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "fs/promises";
+import path from "path";
 
 // Import langsung dari source file (bukan barrel/index.ts)
 // untuk menghindari bundle 66+ komponen once-ui ke Edge Function
 const baseURL = "bimadev.online";
 const person = { name: "Bima", role: "FullStack Developer" };
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 export async function GET(request: Request) {
   let url = new URL(request.url);
   let title = url.searchParams.get("title") || "Portfolio";
-  const font = fetch(new URL("../../../public/fonts/Inter.ttf", import.meta.url)).then((res) =>
-    res.arrayBuffer(),
-  );
-  const image = fetch(new URL("../../../public/images/bima4.jpeg", import.meta.url)).then((res) =>
-    res.arrayBuffer(),
-  );
 
-  const [fontData, imageData] = await Promise.all([font, image]);
+  // Nodejs runtime: pake fs.readFile (fetch gak support file:// protocol)
+  const fontPath = path.join(process.cwd(), "public", "fonts", "Inter.ttf");
+  const imagePath = path.join(process.cwd(), "public", "images", "bima4.jpeg");
+
+  const [fontData, imageData] = await Promise.all([
+    readFile(fontPath),
+    readFile(imagePath),
+  ]);
   const imageSrc = `data:image/jpeg;base64,${Buffer.from(imageData).toString("base64")}`;
 
   return new ImageResponse(
