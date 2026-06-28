@@ -116,6 +116,85 @@
   background: var(--color-brand-background-strong);
 }
 
+/* ── Stats Bar ───────────────────────────────────────── */
+.statCard {
+  border: 1px solid var(--color-neutral-medium);
+  border-radius: var(--static-space-l);
+  padding: var(--static-space-20);
+  text-align: center;
+  background: var(--color-surface-background);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.statNumber {
+  color: var(--color-brand-background-strong);
+}
+
+.statLabel {
+  color: var(--color-neutral-weak);
+}
+
+/* ── What I Do Cards ─────────────────────────────────── */
+.serviceCard {
+  border: 1px solid var(--color-neutral-medium);
+  border-radius: var(--static-space-l);
+  padding: var(--static-space-24);
+  background: var(--color-surface-background);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.serviceIcon {
+  color: var(--color-brand-weak);
+}
+
+/* ── Tech Stack ──────────────────────────────────────── */
+.techStackSubtitle {
+  color: var(--color-neutral-weak);
+  margin-bottom: var(--static-space-24);
+}
+
+.techBadge {
+  border: 1px solid var(--color-neutral-medium);
+  border-radius: var(--static-space-full);
+  padding: var(--static-space-12) var(--static-space-20);
+  background: var(--color-surface-background);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  }
+}
+
+/* ── Quote Section ───────────────────────────────────── */
+.quoteCard {
+  border: 1px solid var(--color-brand-alpha-medium);
+  border-radius: var(--static-space-l);
+  padding: var(--static-space-40);
+  background: var(--color-surface-background);
+  border-left: 3px solid var(--color-brand-background-strong);
+}
+
+.quoteText {
+  font-style: italic;
+  color: var(--color-neutral-weak);
+}
+
+.quoteAttribution {
+  color: var(--color-brand-weak);
+}
+
 /* ── CTA Section ─────────────────────────────────────── */
 .ctaSection {
   text-align: center;

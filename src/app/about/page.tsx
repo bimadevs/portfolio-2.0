@@ -12,6 +12,11 @@ import {
   Tag,
   Text,
 } from "@/once-ui/components";
+import {
+  SiReact, SiNextdotjs, SiTypescript, SiNodedotjs,
+  SiTailwindcss, SiPostgresql, SiSupabase, SiPython,
+  SiGit, SiVscodium,
+} from "react-icons/si";
 import { baseURL } from "@/app/resources";
 import TableOfContents from "@/components/about/TableOfContents";
 import styles from "@/components/about/about.module.scss";
@@ -55,32 +60,18 @@ export async function generateMetadata() {
 
 export default function About() {
   const structure = [
-    {
-      title: about.intro.title,
-      display: about.intro.display,
-      items: [],
-    },
-    {
-      title: about.work.title,
-      display: about.work.display,
-      items: about.work.experiences.map((experience) => experience.company),
-    },
-    {
-      title: about.studies.title,
-      display: about.studies.display,
-      items: about.studies.institutions.map((institution) => institution.name),
-    },
-    {
-      title: about.technical.title,
-      display: about.technical.display,
-      items: about.technical.skills.map((skill) => skill.title),
-    },
+    { title: about.intro.title, display: about.intro.display, items: [] },
+    { title: "What I Do", display: true, items: ["Web Development", "AI & Machine Learning", "UI/UX Design"] },
+    { title: "Tech Stack", display: true, items: [] },
+    { title: about.work.title, display: about.work.display, items: about.work.experiences.map((e) => e.company) },
+    { title: about.studies.title, display: about.studies.display, items: about.studies.institutions.map((i) => i.name) },
+    { title: about.technical.title, display: about.technical.display, items: about.technical.skills.map((s) => s.title) },
   ];
 
   const heroSocials = social.filter((item) => item.link);
 
   return (
-    <Column maxWidth="m">
+    <Column maxWidth="m" paddingX="l">
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -166,21 +157,116 @@ export default function About() {
         </RevealFx>
       </Flex>
 
+      {/* ═══ STATS BAR ═══ */}
+      <RevealFx translateY="16" delay={0.1}>
+        <Grid columns={4} mobileColumns={2} fillWidth gap="16" marginBottom="xl">
+          <div className={styles.statCard}>
+            <Heading variant="display-strong-xl" className={styles.statNumber}>2+</Heading>
+            <Text variant="body-default-s" className={styles.statLabel}>Years Experience</Text>
+          </div>
+          <div className={styles.statCard}>
+            <Heading variant="display-strong-xl" className={styles.statNumber}>10+</Heading>
+            <Text variant="body-default-s" className={styles.statLabel}>Projects Built</Text>
+          </div>
+          <div className={styles.statCard}>
+            <Heading variant="display-strong-xl" className={styles.statNumber}>5+</Heading>
+            <Text variant="body-default-s" className={styles.statLabel}>Technologies</Text>
+          </div>
+          <div className={styles.statCard}>
+            <Heading variant="display-strong-xl" className={styles.statNumber}>∞</Heading>
+            <Text variant="body-default-s" className={styles.statLabel}>Cups of Coffee</Text>
+          </div>
+        </Grid>
+      </RevealFx>
+
       {/* ═══ ABOUT INTRO ═══ */}
       {about.intro.display && (
-        <Column fillWidth marginBottom="xl">
-          <RevealFx translateY="16" delay={0.1}>
-            <Column fillWidth className={styles.aboutCard}>
-              <Heading as="h2" id={about.intro.title} variant="display-strong-s" marginBottom="m">
-                {about.intro.title}
-              </Heading>
-              <Text className={styles.blockAlign} variant="body-default-l" onBackground="neutral-weak">
-                {about.intro.description}
-              </Text>
-            </Column>
-          </RevealFx>
-        </Column>
+        <RevealFx translateY="16" delay={0.1}>
+          <Column fillWidth marginBottom="xl">
+            <Heading as="h2" id={about.intro.title} variant="display-strong-s" marginBottom="m">
+              {about.intro.title}
+            </Heading>
+            <Text variant="body-default-l" onBackground="neutral-weak">
+              {about.intro.description}
+            </Text>
+          </Column>
+        </RevealFx>
       )}
+
+      {/* ═══ WHAT I DO ═══ */}
+      <Column fillWidth marginBottom="xl">
+        <Heading as="h2" id="What I Do" variant="display-strong-s" marginBottom="m">
+          What I Do
+        </Heading>
+        <Grid columns={3} mobileColumns={1} fillWidth gap="16">
+          <RevealFx translateY="16" delay={0.2}>
+            <div className={styles.serviceCard}>
+              <Icon name="code" size="l" className={styles.serviceIcon} />
+              <Heading as="h3" variant="heading-strong-m" marginBottom="8" marginTop="12">
+                Web Development
+              </Heading>
+              <Text variant="body-default-s" onBackground="neutral-weak">
+                Building modern web applications with cutting-edge technologies
+              </Text>
+            </div>
+          </RevealFx>
+          <RevealFx translateY="16" delay={0.25}>
+            <div className={styles.serviceCard}>
+              <Icon name="brain" size="l" className={styles.serviceIcon} />
+              <Heading as="h3" variant="heading-strong-m" marginBottom="8" marginTop="12">
+                AI &amp; Machine Learning
+              </Heading>
+              <Text variant="body-default-s" onBackground="neutral-weak">
+                Creating intelligent solutions powered by artificial intelligence
+              </Text>
+            </div>
+          </RevealFx>
+          <RevealFx translateY="16" delay={0.3}>
+            <div className={styles.serviceCard}>
+              <Icon name="pen" size="l" className={styles.serviceIcon} />
+              <Heading as="h3" variant="heading-strong-m" marginBottom="8" marginTop="12">
+                UI/UX Design
+              </Heading>
+              <Text variant="body-default-s" onBackground="neutral-weak">
+                Designing intuitive and beautiful user experiences
+              </Text>
+            </div>
+          </RevealFx>
+        </Grid>
+      </Column>
+
+      {/* ═══ TECH STACK ═══ */}
+      <Column fillWidth marginBottom="xl">
+        <Heading as="h2" id="Tech Stack" variant="display-strong-s" marginBottom="8">
+          Tech Stack
+        </Heading>
+        <Text variant="body-default-m" className={styles.techStackSubtitle}>
+          Technologies I work with daily
+        </Text>
+        <RevealFx translateY="16" delay={0.3}>
+          <Flex gap="12" wrap>
+            {[
+              { name: "Next.js", icon: SiNextdotjs, color: "#000000" },
+              { name: "React", icon: SiReact, color: "#61DAFB" },
+              { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
+              { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
+              { name: "TailwindCSS", icon: SiTailwindcss, color: "#06B6D4" },
+              { name: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
+              { name: "Supabase", icon: SiSupabase, color: "#3FCF8E" },
+              { name: "Python", icon: SiPython, color: "#3776AB" },
+              { name: "Git", icon: SiGit, color: "#F05032" },
+              { name: "VS Code", icon: SiVscodium, color: "#007ACC" },
+            ].map((tech) => (
+              <div key={tech.name} className={styles.techBadge}>
+                <Flex gap="8" vertical="center" style={{ display: "inline-flex" }}>
+                  <tech.icon size={18} color={tech.color} />
+                  <Text variant="body-default-s">{tech.name}</Text>
+                </Flex>
+              </div>
+            ))}
+          </Flex>
+        </RevealFx>
+      </Column>
 
       {/* ═══ EXPERIENCE ═══ */}
       {about.work.display && (
@@ -285,6 +371,18 @@ export default function About() {
           </Grid>
         </Column>
       )}
+
+      {/* ═══ QUOTE ═══ */}
+      <RevealFx translateY="16" delay={0.4}>
+        <Column fillWidth marginBottom="xl" className={styles.quoteCard}>
+          <Text variant="heading-strong-m" className={styles.quoteText}>
+            &ldquo;Code is not just about syntax. It&apos;s about solving problems and building things that matter.&rdquo;
+          </Text>
+          <Text variant="body-default-s" className={styles.quoteAttribution} marginTop="m">
+            — Bima Dev, FullStack Developer
+          </Text>
+        </Column>
+      </RevealFx>
 
       {/* ═══ CTA SECTION ═══ */}
       <RevealFx translateY="16" delay={0.4}>
