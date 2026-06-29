@@ -141,17 +141,11 @@ const components = {
   blockquote: (props: any) => (
     <blockquote
       style={{
-        borderLeft: "4px solid var(--brand-background-strong)",
+        borderLeft: "2px solid var(--neutral-border-strong)",
         paddingLeft: "var(--static-space-16)",
-        marginLeft: 0,
-        marginRight: 0,
-        marginBottom: "var(--static-space-16)",
-        marginTop: "var(--static-space-16)",
+        margin: "var(--static-space-16) 0",
+        color: "var(--neutral-on-background-weak)",
         fontStyle: "italic",
-        color: "var(--neutral-on-background-medium)",
-        background: "var(--neutral-alpha-weak)",
-        padding: "var(--static-space-16) var(--static-space-24)",
-        borderRadius: "var(--radius-s)",
       }}
       {...props}
     />
@@ -167,6 +161,10 @@ type CustomMDXProps = MDXRemoteProps & {
 export function CustomMDX(props: CustomMDXProps) {
   return (
     // @ts-ignore: Suppressing type error for MDXRemote usage
-    <MDXRemote {...props} components={{ ...components, ...(props.components || {}) }} />
+    <MDXRemote
+      {...props}
+      options={{ blockJS: false }}
+      components={{ ...components, ...(props.components || {}) }}
+    />
   );
 }
