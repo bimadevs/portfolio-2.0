@@ -138,6 +138,24 @@ const components = {
   h6: createHeading(6) as any,
   img: createImage as any,
   a: CustomLink as any,
+  blockquote: (props: any) => (
+    <blockquote
+      style={{
+        borderLeft: "4px solid var(--brand-background-strong)",
+        paddingLeft: "var(--static-space-16)",
+        marginLeft: 0,
+        marginRight: 0,
+        marginBottom: "var(--static-space-16)",
+        marginTop: "var(--static-space-16)",
+        fontStyle: "italic",
+        color: "var(--neutral-on-background-medium)",
+        background: "var(--neutral-alpha-weak)",
+        padding: "var(--static-space-16) var(--static-space-24)",
+        borderRadius: "var(--radius-s)",
+      }}
+      {...props}
+    />
+  ),
   Table,
   CodeBlock,
 };
