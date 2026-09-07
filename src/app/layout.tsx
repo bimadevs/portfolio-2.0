@@ -152,8 +152,15 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         code.variable,
       )}
     >
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3345833827561984"
+          crossOrigin="anonymous"
+        />
+      </head>
       <ToastProvider>
-        <Column style={{ minHeight: "100vh" }} as="body" fillWidth margin="0" padding="0">
+        <Column style={{ minHeight: "100vh", maxWidth: "100vw" }} as="body" fillWidth margin="0" padding="0">
           <Background
             mask={{
               cursor: effects.mask.cursor,
