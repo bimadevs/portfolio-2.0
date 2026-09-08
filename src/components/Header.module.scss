@@ -1,25 +1,65 @@
 .position {
-    position: sticky;
-    top: 0;
+  position: sticky;
+  top: var(--static-space-16);
+  z-index: 50;
+  pointer-events: none;
+  transition: transform var(--transition-macro-medium);
 }
 
 .mask {
-    pointer-events: none;
-    backdrop-filter: blur(0.5rem);
-    background: linear-gradient(to bottom, var(--page-background), var(--static-transparent));
-    mask-image: linear-gradient(rgba(0,0,0) 25%, rgba(0, 0, 0, 0) 100%);
-    mask-size: 100% 100%;
+  pointer-events: none !important;
+  backdrop-filter: blur(0.5rem);
+  -webkit-backdrop-filter: blur(0.5rem);
+  background: linear-gradient(to bottom, var(--page-background), var(--static-transparent));
+  mask-image: linear-gradient(black 25%, transparent 100%);
+  mask-size: 100% 100%;
+}
+
+.dockContainer {
+  display: contents;
+}
+
+.dockPill {
+  pointer-events: auto;
+  backdrop-filter: blur(1rem);
+  -webkit-backdrop-filter: blur(1rem);
+  box-shadow: var(--shadow-xl);
+  border-radius: var(--radius-full);
+  transition: transform var(--transition-micro-medium), box-shadow var(--transition-micro-medium);
+}
+
+.dockPill:hover {
+  box-shadow: var(--shadow-xl), 0 0 24px rgba(45, 105, 250, 0.2);
+}
+
+.headerMeta {
+  pointer-events: auto;
 }
 
 @media (--s) {
-    .position {
-        top: auto;
-        position: fixed;
-        bottom: var(--static-space-24);
-    }
+  .position {
+    top: auto;
+    position: fixed;
+    bottom: calc(var(--static-space-20) + env(safe-area-inset-bottom, 0px));
+    left: 0;
+    right: 0;
+    width: 100%;
+    pointer-events: none;
+    padding: 0 var(--static-space-16);
+    z-index: 50;
+  }
 
-    .mask {
-        transform: rotate(180deg);
-        bottom: 0;
-    }
+  .dockPill {
+    pointer-events: auto;
+    backdrop-filter: blur(1rem);
+    -webkit-backdrop-filter: blur(1rem);
+    box-shadow: var(--shadow-xl);
+    border-radius: var(--radius-full);
+  }
+
+  .mask {
+    transform: rotate(180deg);
+    top: auto;
+    bottom: 0;
+  }
 }

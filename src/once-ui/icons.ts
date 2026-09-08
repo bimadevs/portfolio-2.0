@@ -31,6 +31,9 @@ import {
   PiGridFourDuotone,
   PiBookBookmarkDuotone,
   PiImageDuotone,
+  PiCodeDuotone,
+  PiBrainDuotone,
+  PiPaintBrushDuotone,
 } from "react-icons/pi";
 
 import { FaDiscord, FaGithub, FaLinkedin, FaXTwitter, FaWhatsapp, FaInstagram } from "react-icons/fa6";
@@ -59,6 +62,9 @@ export const iconLibrary: Record<string, IconType> = {
   calendar: HiCalendarDays,
   home: PiHouseDuotone,
   gallery: PiImageDuotone,
+  code: PiCodeDuotone,
+  brain: PiBrainDuotone,
+  pen: PiPaintBrushDuotone,
   discord: FaDiscord,
   eye: HiOutlineEye,
   eyeOff: HiOutlineEyeSlash,

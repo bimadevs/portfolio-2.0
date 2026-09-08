@@ -12,15 +12,13 @@ import { person, home, about, blog, work, gallery } from "@/app/resources/conten
 
 type TimeDisplayProps = {
   timeZone: string;
-  locale?: string; // Optionally allow locale, defaulting to 'en-GB'
+  locale?: string;
 };
 
 const TimeDisplay: React.FC<TimeDisplayProps> = ({ timeZone, locale = "en-GB" }) => {
   const [currentTime, setCurrentTime] = useState("");
 
   useEffect(() => {
-    // ⚡ Bolt: Instantiating Intl.DateTimeFormat is expensive.
-    // Creating it once outside the interval loop saves ~60 creations per minute.
     const formatter = new Intl.DateTimeFormat(locale, {
       timeZone,
       hour: "2-digit",
@@ -51,28 +49,55 @@ export const Header = () => {
 
   return (
     <>
-      <Fade hide="s" fillWidth position="fixed" height="80" zIndex={9} className="z-40" />
-      <Fade show="s" fillWidth position="fixed" bottom="0" to="top" height="80" zIndex={9} className="z-40" />
+      <Fade
+        hide="s"
+        fillWidth
+        position="fixed"
+        top="0"
+        height="80"
+        zIndex={9}
+        className="z-40"
+        style={{ pointerEvents: "none" }}
+      />
+      <Fade
+        show="s"
+        fillWidth
+        position="fixed"
+        bottom="0"
+        to="top"
+        height="80"
+        zIndex={9}
+        className="z-40"
+        style={{ pointerEvents: "none" }}
+      />
       <Flex
         fitHeight
         className={classNames(styles.position, "z-40")}
         as="header"
-        zIndex={9}
+        zIndex={10}
         fillWidth
         padding="8"
         horizontal="center"
       >
-        <Flex paddingLeft="12" fillWidth vertical="center" textVariant="body-default-s">
+        <Flex
+          paddingLeft="12"
+          fillWidth
+          vertical="center"
+          textVariant="body-default-s"
+          hide="s"
+          className={styles.headerMeta}
+        >
           {display.location && <Flex hide="s">{person.location}</Flex>}
         </Flex>
-        <Flex fillWidth horizontal="center">
+        <Flex fillWidth horizontal="center" className={styles.dockContainer}>
           <Flex
             background="surface"
             border="neutral-medium"
-            radius="m-4"
-            shadow="l"
+            radius="full"
+            shadow="xl"
             padding="4"
             horizontal="center"
+            className={styles.dockPill}
           >
             <Flex gap="4" vertical="center" textVariant="body-default-s">
               {routes["/"] && (
@@ -159,7 +184,7 @@ export const Header = () => {
             </Flex>
           </Flex>
         </Flex>
-        <Flex fillWidth horizontal="end" vertical="center">
+        <Flex fillWidth horizontal="end" vertical="center" hide="s" className={styles.headerMeta}>
           <Flex
             paddingRight="12"
             horizontal="end"

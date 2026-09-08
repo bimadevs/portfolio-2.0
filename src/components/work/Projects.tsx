@@ -1,12 +1,15 @@
 import { getPosts } from "@/app/utils/utils";
 import { Column } from "@/once-ui/components";
 import { ProjectCard } from "@/components";
+import { SpacingToken } from "@/once-ui/types";
 
 interface ProjectsProps {
   range?: [number, number?];
+  marginBottom?: SpacingToken | number | string;
+  paddingX?: SpacingToken;
 }
 
-export function Projects({ range }: ProjectsProps) {
+export function Projects({ range, marginBottom = "40", paddingX = "l" }: ProjectsProps) {
   let allProjects = getPosts(["src", "app", "work", "projects"]);
 
   const sortedProjects = allProjects.sort((a, b) => {
@@ -18,7 +21,7 @@ export function Projects({ range }: ProjectsProps) {
     : sortedProjects;
 
   return (
-    <Column fillWidth gap="xl" marginBottom="40" paddingX="l">
+    <Column fillWidth gap="xl" marginBottom={marginBottom as any} paddingX={paddingX as any}>
       {displayedProjects.map((post, index) => (
         <ProjectCard
           priority={index < 2}

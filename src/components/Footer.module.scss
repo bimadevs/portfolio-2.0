@@ -1,7 +1,16 @@
+.footerContainer {
+  position: relative;
+  width: 100%;
+}
+
 @media (--s) {
-    .mobile {
-        text-align: center;
-        flex-direction: column;
-        align-items: center;
-    }
+  .footerContainer {
+    padding-bottom: calc(var(--static-space-80) + env(safe-area-inset-bottom, 0px));
+  }
+
+  .mobile {
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+  }
 }

@@ -31,6 +31,19 @@ yarn-error.log*
 .env*.local
 
 .kiro
+.agent
+.agents
+.claude
+.codex
+.cursor
+.gemini
+.grok
+.hermes
+.impeccable
+.opencode
+.pi
+.qoder
+.vibe
 
 # vercel
 .vercel

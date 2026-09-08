@@ -110,7 +110,7 @@ export default function About() {
       {/* ═══ HERO SECTION ═══ */}
       <Flex fillWidth mobileDirection="column" className={styles.heroSection}>
         {about.avatar.display && (
-          <RevealFx speed="slow" className={styles.heroLeft}>
+          <RevealFx speed="fast" className={styles.heroLeft}>
             <Column horizontal="center">
               <ProfileCard avatarUrl="/images/bima4.jpeg" />
               {person.languages.length > 0 && (
@@ -125,7 +125,7 @@ export default function About() {
             </Column>
           </RevealFx>
         )}
-        <RevealFx speed="slow" delay={0.2}>
+        <RevealFx speed="fast" delay={0.2}>
           <Column className={styles.heroRight}>
             <Heading className={styles.textAlign} variant="display-strong-xl">
               {person.name}

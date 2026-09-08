@@ -5,6 +5,9 @@
     black 0%,
     transparent 100%
   );
+  overflow: hidden;
+  max-width: 100vw;
+  contain: paint;
 }
 
 .gradient {
@@ -19,6 +22,7 @@
   top: -150%;
   transform: rotate(var(--gradient-tilt));
   transform-origin: center;
+  pointer-events: none;
 }
 
 .dots {

@@ -25,7 +25,7 @@ export default function Post({ post, thumbnail }: PostProps) {
         mobileDirection="column"
         fillWidth
         paddingY="12"
-        paddingX="16"
+        paddingX="s"
         gap="32"
       >
         {post.metadata.image && thumbnail && (
@@ -43,7 +43,7 @@ export default function Post({ post, thumbnail }: PostProps) {
           />
         )}
         <Column position="relative" fillWidth gap="8" vertical="center">
-          <Heading as="h2" variant="heading-strong-l" wrap="balance">
+          <Heading as="h3" variant="heading-strong-l" wrap="balance">
             {post.metadata.title}
           </Heading>
           <Text variant="label-default-s" onBackground="neutral-weak">

@@ -1,115 +1,234 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { Camera, MessageCircle, Mail } from "lucide-react";
-import { cn } from "@/lib/utils";
+import classNames from "classnames";
+import {
+  Flex,
+  Heading,
+  Text,
+  SmartLink,
+  IconButton,
+  Icon,
+  RevealFx,
+} from "@/once-ui/components";
+import { person, social } from "@/app/resources/content";
+import styles from "./minimalist-hero.module.scss";
 
-const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-  camera: Camera,
-  messageCircle: MessageCircle,
-  mail: Mail,
-};
+export interface SocialLinkItem {
+  name?: string;
+  icon: string;
+  href?: string;
+  link?: string;
+  label?: string;
+}
 
-interface MinimalistHeroProps {
-  mainText: string | React.ReactNode;
-  readMoreLink: string;
-  imageSrc: string;
-  imageAlt: string;
-  overlayText: {
+export interface MinimalistHeroProps {
+  mainText?: string | React.ReactNode;
+  readMoreLink?: string;
+  readMoreText?: string;
+  imageSrc?: string;
+  imageAlt?: string;
+  overlayText?: {
     part1: string;
     part2: string;
   };
-  socialLinks: { icon: string; href: string }[];
-  locationText: string;
+  socialLinks?: SocialLinkItem[];
+  locationText?: string;
   className?: string;
 }
 
-const SocialIcon = ({ href, icon }: { href: string; icon: string }) => {
-  const Icon = iconMap[icon];
-  if (!Icon) return null;
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-foreground/60 transition-colors hover:text-foreground"
-    >
-      <Icon className="h-5 w-5" />
-    </a>
-  );
+const LOCAL_FALLBACK_IMAGE = "/images/avatar.jpg";
+
+const normalizeIconName = (name: string): string => {
+  const clean = (name || "").toLowerCase().trim();
+  const map: Record<string, string> = {
+    camera: "instagram",
+    messagecircle: "whatsapp",
+    message_circle: "whatsapp",
+    mail: "email",
+    envelope: "email",
+    twitter: "x",
+  };
+  return map[clean] || clean;
 };
 
-export const MinimalistHero = ({
-  mainText,
-  readMoreLink,
-  imageSrc,
-  imageAlt,
-  overlayText,
+const getSocialAriaLabel = (name: string | undefined, iconName: string): string => {
+  const displayTitle = name || (iconName.charAt(0).toUpperCase() + iconName.slice(1));
+  if (iconName === "email") return `Send email to ${person.name || "BimaDev"}`;
+  if (iconName === "whatsapp") return `Contact ${person.name || "BimaDev"} on WhatsApp`;
+  return `Visit ${person.name || "BimaDev"}'s ${displayTitle} profile`;
+};
+
+export const MinimalistHero: React.FC<MinimalistHeroProps> = ({
+  mainText = "I'm Bima, a FullStack Developer from Indonesia — I craft modern websites and build my own projects.",
+  readMoreLink = "/about",
+  readMoreText = "About me",
+  imageSrc = "/images/bima3.png",
+  imageAlt = `${person.name || "BimaDev"} - ${person.role || "FullStack Developer"}`,
+  overlayText = { part1: "FullStack", part2: "Developer" },
   socialLinks,
   locationText,
   className,
-}: MinimalistHeroProps) => {
-  return (
-    <div
-      className={cn(
-        "relative flex h-screen w-full flex-col items-center justify-between overflow-hidden p-8 font-sans md:p-12",
-        className,
-      )}
-    >
-      <div className="relative grid w-full max-w-7xl flex-grow grid-cols-1 items-center md:grid-cols-3">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1 }}
-          className="z-20 order-2 md:order-1 text-center md:text-left"
-        >
-          <p className="mx-auto lg:max-w-xs text-sm leading-relaxed text-foreground/80 md:mx-0">
-            {mainText}
-          </p>
-          <a
-            href={readMoreLink}
-            className="mt-4 inline-block text-sm font-medium text-foreground underline decoration-from-font"
-          >
-            Read More
-          </a>
-        </motion.div>
+}) => {
+  const rawSrc = imageSrc || "/images/bima3.png";
+  const initialNormalizedSrc = rawSrc.startsWith("./") ? rawSrc.replace(/^\./, "") : rawSrc;
 
-        <div className="relative order-1 md:order-2 flex justify-center items-center h-full">
+  const [currentImageSrc, setCurrentImageSrc] = useState<string>(initialNormalizedSrc);
+
+  useEffect(() => {
+    const normalized = rawSrc.startsWith("./") ? rawSrc.replace(/^\./, "") : rawSrc;
+    setCurrentImageSrc(normalized);
+  }, [rawSrc]);
+
+  // Determine active social links: fallback to content.jsx social if prop is undefined
+  const resolvedSocialLinks: SocialLinkItem[] =
+    socialLinks !== undefined
+      ? socialLinks
+      : (social || []).map((item) => ({
+          name: item.name,
+          icon: item.icon,
+          href: item.link,
+        }));
+
+  // Determine active location: fallback to formatted location or person.location if undefined
+  const resolvedLocation: string | undefined =
+    locationText !== undefined
+      ? locationText
+      : person.location === "Asia/Pontianak"
+        ? "Pontianak, Indonesia"
+        : person.location;
+
+  return (
+    <Flex
+      as="section"
+      role="region"
+      aria-label="Hero section"
+      fillWidth
+      horizontal="center"
+      vertical="center"
+      position="relative"
+      className={classNames(styles.heroContainer, className)}
+    >
+      <div className={styles.heroInner}>
+        {/* Left Column: Intro Copy, CTA & Social Meta */}
+        <RevealFx speed="fast" delay={0.2} className={styles.leftColumn}>
+          <Text
+            variant="body-default-m"
+            onBackground="neutral-weak"
+            className={styles.mainText}
+          >
+            {mainText}
+          </Text>
+
+          {readMoreLink && (
+            <SmartLink
+              href={readMoreLink}
+              suffixIcon="arrowRight"
+              className={styles.readMoreLink}
+              aria-label={`Read more about ${person.name || "me"}`}
+            >
+              <Text variant="body-strong-s">{readMoreText}</Text>
+            </SmartLink>
+          )}
+
+          {(resolvedLocation || (resolvedSocialLinks && resolvedSocialLinks.length > 0)) && (
+            <div className={styles.metaRow}>
+              {resolvedLocation && (
+                <div
+                  className={styles.location}
+                  aria-label={`Location: ${resolvedLocation}`}
+                  role="status"
+                >
+                  <Icon
+                    name="globe"
+                    size="xs"
+                    onBackground="brand-medium"
+                    decorative
+                  />
+                  <Text variant="body-default-xs" onBackground="neutral-weak">
+                    {resolvedLocation}
+                  </Text>
+                </div>
+              )}
+
+              {resolvedSocialLinks && resolvedSocialLinks.length > 0 && (
+                <nav className={styles.socialRow} aria-label="Social media links">
+                  {resolvedSocialLinks.map((item, index) => {
+                    const iconName = normalizeIconName(item.icon);
+                    const targetHref = item.href || item.link;
+                    if (!targetHref) return null;
+                    const tooltipLabel = item.name || iconName;
+                    const ariaLabel = item.label || getSocialAriaLabel(item.name, iconName);
+
+                    return (
+                      <IconButton
+                        key={`${item.icon}-${index}`}
+                        href={targetHref}
+                        icon={iconName}
+                        size="s"
+                        variant="secondary"
+                        tooltip={tooltipLabel}
+                        aria-label={ariaLabel}
+                      />
+                    );
+                  })}
+                </nav>
+              )}
+            </div>
+          )}
+        </RevealFx>
+
+        {/* Center Column: Prominent Portrait Image & Ambient Brand Glow */}
+        <div className={styles.centerColumn}>
           <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
+            initial={{ scale: 0.88, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-            className="absolute z-0 h-[300px] w-[300px] rounded-full bg-[#2D69FA]/20 md:h-[400px] md:w-[400px] lg:h-[500px] lg:w-[500px]"
-          />
-          <motion.img
-            src={imageSrc}
-            alt={imageAlt}
-            className="relative z-8 h-auto w-56 object-cover md:w-64 scale-150 lg:w-72"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.onerror = null;
-              target.src = "https://placehold.co/400x600/eab308/ffffff?text=Image+Not+Found";
+            transition={{
+              duration: 0.8,
+              ease: [0.16, 1, 0.3, 1],
+              delay: 0.1,
             }}
-          />
+            className={styles.imageWrapper}
+          >
+            <div className={styles.auraGlow} aria-hidden="true" />
+            <Image
+              src={currentImageSrc}
+              alt={imageAlt}
+              width={408}
+              height={612}
+              sizes="(max-width: 768px) 280px, (max-width: 1024px) 340px, 420px"
+              priority
+              className={styles.heroImage}
+              onError={() => {
+                if (currentImageSrc !== LOCAL_FALLBACK_IMAGE) {
+                  setCurrentImageSrc(LOCAL_FALLBACK_IMAGE);
+                }
+              }}
+            />
+          </motion.div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.2 }}
-          className="z-20 order-3 flex items-center justify-center text-center md:justify-start"
-        >
-          <h1 className="text-7xl font-extrabold text-foreground md:text-5xl lg:text-6xl">
-            {overlayText.part1}
-            <br />
-            {overlayText.part2}
-          </h1>
-        </motion.div>
+        {/* Right Column: Statement Heading — "FullStack" & "Developer" stacked on separate lines */}
+        <RevealFx speed="fast" delay={0.3} className={styles.rightColumn}>
+          <Heading
+            as="h1"
+            className={styles.headline}
+          >
+            <span className={styles.headlineLine}>{overlayText.part1}</span>
+            <Text
+              as="span"
+              onBackground="brand-weak"
+              className={classNames(styles.headlineLine, styles.headlineAccent)}
+            >
+              {overlayText.part2}
+            </Text>
+          </Heading>
+        </RevealFx>
       </div>
-    </div>
+    </Flex>
   );
 };
+
+export default MinimalistHero;

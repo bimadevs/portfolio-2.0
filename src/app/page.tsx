@@ -44,9 +44,9 @@ export async function generateMetadata() {
 }
 
 const heroSocialLinks = [
-  { icon: "camera", href: "https://www.instagram.com/biimaa_jo" },
-  { icon: "messageCircle", href: "https://wa.me/6282254044783" },
-  { icon: "mail", href: "mailto:contact@bimadev.online" },
+  { name: "Instagram", icon: "instagram", href: "https://www.instagram.com/biimaa_jo" },
+  { name: "WhatsApp", icon: "whatsapp", href: "https://wa.me/6282254044783" },
+  { name: "Email", icon: "email", href: "mailto:contact@bimadev.online" },
 ];
 
 export default function Home() {
@@ -117,31 +117,41 @@ export default function Home() {
       <MinimalistHero
         mainText="I'm Bima, a FullStack Developer from Indonesia — I craft modern websites and build my own projects."
         readMoreLink="/about"
-        imageSrc="./images/bima3.png"
+        imageSrc="/images/bima3.png"
         imageAlt="BimaDev"
         overlayText={{ part1: "FullStack", part2: "Developer" }}
         socialLinks={heroSocialLinks}
         locationText="Pontianak, Indonesia"
       />
 
-      <Column maxWidth="m" gap="xl" horizontal="center">
-        <RevealFx translateY="16" delay={0.6}>
-          <Projects range={[1, 1]} />
+      <Column fillWidth maxWidth="m" gap="xl" horizontal="center" paddingBottom="xl">
+        <RevealFx speed="fast" translateY="16" delay={0.4} fillWidth>
+          <Projects range={[1, 1]} marginBottom="0" />
         </RevealFx>
         {routes["/blog"] && (
-          <Flex fillWidth gap="24" mobileDirection="column">
-            <Flex flex={1} paddingLeft="l">
-              <Heading as="h2" variant="display-strong-xs" wrap="balance">
-                Latest from the blog
-              </Heading>
+          <RevealFx speed="fast" translateY="16" delay={0.5} fillWidth>
+            <Flex fillWidth gap="24" paddingX="l" mobileDirection="column">
+              <Flex flex={1} paddingTop="12">
+                <Heading as="h2" variant="display-strong-xs" wrap="balance">
+                  Latest from the blog
+                </Heading>
+              </Flex>
+              <Flex flex={3}>
+                <Posts range={[1, 2]} columns="2" marginBottom="0" />
+              </Flex>
             </Flex>
-            <Flex flex={3} paddingX="20">
-              <Posts range={[1, 2]} columns="2" />
-            </Flex>
-          </Flex>
+          </RevealFx>
         )}
-        <Projects range={[2]} />
-        {newsletter.display && <Mailchimp newsletter={newsletter} />}
+        <RevealFx speed="fast" translateY="16" delay={0.6} fillWidth>
+          <Projects range={[2]} marginBottom="0" />
+        </RevealFx>
+        {newsletter.display && (
+          <RevealFx speed="fast" translateY="16" delay={0.7} fillWidth>
+            <Flex fillWidth paddingX="l">
+              <Mailchimp newsletter={newsletter} />
+            </Flex>
+          </RevealFx>
+        )}
       </Column>
     </>
   );

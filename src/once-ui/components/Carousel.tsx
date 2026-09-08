@@ -187,11 +187,9 @@ const Carousel: React.FC<CarouselProps> = ({
       {nextIndexToPreload !== null && images[nextIndexToPreload] && (
         <Flex
           style={{
-            position: "fixed",
-            top: "-9999px",
-            left: "-9999px",
-            width: "1px",
-            height: "1px",
+            position: "absolute",
+            width: "0px",
+            height: "0px",
             overflow: "hidden",
             visibility: "hidden",
             pointerEvents: "none",
