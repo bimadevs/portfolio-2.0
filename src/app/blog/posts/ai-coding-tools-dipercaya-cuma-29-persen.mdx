@@ -1,0 +1,117 @@
+---
+title: "84% Programmer Udah Pakai AI, tapi Cuma 29% yang Percaya — Gimana Ceritanya?"
+publishedAt: "2026-09-15"
+summary: "Fakta absurd di dunia programming 2026: semua orang pakai AI coding assistant, tapi hampir semua juga ngerasa AI-nya bisa aja ngaco. Kok bisa?"
+tag: "Career & Mindset"
+---
+
+> *"Pakai AI biar cepet, tapi review manual juga biar gak kena serangan jantung pas deployment."*
+> — Setiap programmer tahun 2026
+
+---
+
+## Kenapa Ini Jadi Viral?
+
+Baru-baru ini data dari Stack Overflow Developer Survey 2026 (n=49.000+) bikin heboh:
+
+- **84%** programmer di dunia udah pakai atau berencana pakai AI coding tools
+- Tapi cuma **29%** yang beneran percaya sama output AI-nya
+
+Itu artinya? **55% programmer pakai AI sambil tutup mata.**
+
+Kayak naik ojek online yang driver-nya ngebut tapi kamu gak yakin dia punya SIM.
+
+---
+
+## Kenapa Programmer Gak Percaya AI?
+
+### 1. AI Suka Ngeyel dengan Keyakinan Palsu
+
+Coba tanya AI:
+
+```python
+# Tanya: "Ini bug di mana?"
+def hitung_total(items):
+    total = 0
+    for item in items:
+        total += item.price
+    return total
+```
+
+AI jawab: *"Kodenya sudah benar! Tidak ada bug."*
+
+Padahal yang bener: belum handle `None` value di item.price. AI confident banget jawab salah. **Sama kayak temen yang bilang "gue tau jalan" tapi nyasar.**
+
+### 2. AI Suka Copy-Paste dari Stack Overflow (Tapi Salah Tempel)
+
+AI kadang ngasih kode yang works di versi lama. Kamu pakai versi baru. Error. Kamu debug 2 jam. Ternyata syntax-nya udah deprecated dari tahun 2024.
+
+> **Fakta pahit:** AI kadang lebih jago ngafal kode lama daripada ngerti kode baru.
+
+### 3. AI Gak Ngerti Konteks Project Kamu
+
+AI gak tau kalau di codebase kamu ada kebijakan:
+- Gak boleh pakai `any` di TypeScript
+- Harus pakai async/await, bukan `.then()`
+- Setiap fungsi harus ada JSDoc
+
+Kamu yang tau semua itu. AI? Dia cuma tau kode yang kamu paste ke chat.
+
+### 4. Security = Kebiasaan Buruk AI
+
+Menurut laporan Kusari (Juli 2026):
+
+> *"AI coding assistants bikin developer 4x lebih cepat, tapi 10x lebih riskan dari sisi security."*
+
+AI suka kasih solusi yang works tapi **insecure**. Contoh:
+- SQL query tanpa parameterized query
+- Hardcoded API keys di kode
+- Error handling yang nge-expose internal details
+
+Kalau kamu gak review, bisnis kamu bisa kena breach.
+
+---
+
+## Jadi Harus Gimana?
+
+### Cara Sehat Pakai AI di 2026
+
+1. **AI sebagai sparring partner, bukan replacement** — Biar AI draft kode, kamu yang final review
+2. **Selalu tanya "kenapa?"** — Jangan langsung accept jawaban AI. Tanya: "Kenapa pakai cara ini? Ada alternatif lain?"
+3. **Test setiap kode AI** — Kalau AI kasih kode, langsung test. Jangan percaya tanpa bukti
+4. **Pahami kode, jangan cuma copy** — Kalau kamu gak ngerti kode yang AI kasih, kamu gak harus pakai itu
+5. **Pakai AI untuk belajar, bukan untuk lari dari belajar** — AI bisa bantu jelasin konsep, tapi kamu yang harus ngerti
+
+---
+
+## Perspektif yang Menarik
+
+Data JetBrains Developer Ecosystem Survey 2026 bilang:
+
+> **39%** developer pakai AI coding tools di JetBrains IDE (VS Code, IntelliJ, dll)
+
+Dan kalau di-breakdown per region:
+- **Eropa**: 86-90% adoption
+- **Amerika Serikat**: 86-90% adoption
+- **Asia Tenggara**: Masih di bawah 70%
+
+Itu artinya? **Indonesia masih ada peluang besar.** Tapi bukan berarti harus buru-buru pakai AI tanpa fondasi yang kuat.
+
+---
+
+## Kesimpulan
+
+> *"AI coding assistant itu kayak pisau dapur: tajam kalau dipake bener, tapi bisa bikin kamu nangis kalau gak hati-hati."*
+
+Yang penting:
+- **Pakai**, tapi jangan **blind trust**
+- **Belajar**, tapi jangan **gantungin**
+- **Cepat**, tapi jangan **ceroboh**
+
+Karena di akhir hari, yang dituntut perusahaan itu bukan "seberapa cepat kamu pakai AI" tapi **"seberapa reliable kode yang kamu shipping."**
+
+---
+
+*PS: Artikel ini ditulis tanpa bantuan AI coding assistant. Tapi AI bantu cari data risetnya. See? Symbiosis yang sehat itu ada.*
+
+*Data Sources: Stack Overflow Developer Survey 2026, JetBrains Developer Ecosystem 2026, Kusari Security Report 2026*
