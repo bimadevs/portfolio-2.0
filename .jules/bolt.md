@@ -9,3 +9,7 @@
 ## 2025-05-24 - Optimizing SmartImage Layout Thrashing
 **Learning:** `SmartImage` component was calling `getBoundingClientRect()` on every render even when not enlarged, causing forced synchronous layout reflows and performance degradation in lists/grids.
 **Action:** Guard `getBoundingClientRect()` calls with `if (!isEnlarged) return defaultStyles;` to ensure layout calculations only happen when the user explicitly interacts to enlarge the image.
+
+## 2025-05-25 - Optimizing SmartImage Regex Recompilation
+**Learning:** `SmartImage` was re-compiling a complex YouTube regex and creating new style objects on every render, causing unnecessary CPU work and object allocation, especially in lists like `MasonryGrid`.
+**Action:** Extracted `YOUTUBE_REGEX` and `DEFAULT_TRANSFORM` constant outside the component scope to ensure stability and performance.

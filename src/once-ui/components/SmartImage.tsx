@@ -5,6 +5,24 @@ import Image from "next/image";
 
 import { Flex, Skeleton } from "@/once-ui/components";
 
+const YOUTUBE_REGEX =
+  /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+
+const DEFAULT_TRANSFORM = {
+  transform: "translate(0, 0) scale(1)",
+  transition: "all 0.3s ease-in-out",
+  zIndex: undefined,
+};
+
+const isYouTubeVideo = (url: string) => YOUTUBE_REGEX.test(url);
+
+const getYouTubeEmbedUrl = (url: string) => {
+  const match = url.match(YOUTUBE_REGEX);
+  return match
+    ? `https://www.youtube.com/embed/${match[1]}?controls=0&rel=0&modestbranding=1`
+    : "";
+};
+
 export interface SmartImageProps extends React.ComponentProps<typeof Flex> {
   aspectRatio?: string;
   height?: number;
@@ -66,11 +84,7 @@ const SmartImage: React.FC<SmartImageProps> = ({
   const calculateTransform = () => {
     // Optimization: Skip expensive calculation if not enlarged to avoid forced reflows
     if (!isEnlarged) {
-      return {
-        transform: "translate(0, 0) scale(1)",
-        transition: "all 0.3s ease-in-out",
-        zIndex: undefined,
-      };
+      return DEFAULT_TRANSFORM;
     }
 
     if (!imageRef.current) return {};
@@ -88,21 +102,6 @@ const SmartImage: React.FC<SmartImageProps> = ({
       transition: "all 0.3s ease-in-out",
       zIndex: 2,
     };
-  };
-
-  const isYouTubeVideo = (url: string) => {
-    const youtubeRegex =
-      /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
-    return youtubeRegex.test(url);
-  };
-
-  const getYouTubeEmbedUrl = (url: string) => {
-    const match = url.match(
-      /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/,
-    );
-    return match
-      ? `https://www.youtube.com/embed/${match[1]}?controls=0&rel=0&modestbranding=1`
-      : "";
   };
 
   const isVideo = src?.endsWith(".mp4");
