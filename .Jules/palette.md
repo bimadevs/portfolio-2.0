@@ -9,3 +9,7 @@
 ## 2025-05-20 - Ambiguous Link Text
 **Learning:** Generic link text like "Read more" or "View project" creates confusion for screen reader users when navigated out of context.
 **Action:** Always attach descriptive `aria-label` props to generic links (e.g., `aria-label={`Read more about ${title}`}`).
+
+## 2025-05-21 - Modal Overlay Accessibility
+**Learning:** Modal-like interactions (like image enlargement) often trap focus or lack exit controls, relying on implicit behavior (click outside). This is inaccessible for keyboard users and confusing for all users.
+**Action:** Always provide an explicit "Close" button for overlays and ensure the trigger is keyboard-accessible (`role="button"`, `tabIndex`, `onKeyDown`).
