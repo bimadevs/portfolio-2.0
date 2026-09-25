@@ -1,0 +1,235 @@
+---
+title: "AI Coding Agents 2026: Dari Vibe Coding ke Orchestrator — Cara Benar Pakai Cursor, Claude Code, & Devin Buat Pemula"
+publishedAt: "2026-09-25"
+summary: "Vibe coding udah basi. 2026 ini era AI coding agents: Cursor Composer, Claude Code, Devin. Bedanya? Agent ngerjain task end-to-end, bukan cuma nulis potongan kode. Ini cara jadi orchestrator, bukan cuma prompt operator."
+tag: "Tips"
+---
+
+> *\"Vibe coding itu lu suruh AI nulis kode. Agentic coding itu lu jadi **manajer proyek** buat tim AI yang gak pernah ngeluh, gak butuh tidur, tapi butuh arahan yang jelas.\"*
+
+---
+
+Kalau lu masih mikir **vibe coding** itu puncak evolusi AI buat developer — **lu ketinggalan 6 bulan**.
+
+Minggu lalu gue coba **Cursor Composer** bikin full-stack app: Next.js 14 + Prisma + NextAuth + Stripe + Tailwind. Dulu butuh 2 minggu. Sekarang? **3 jam**. Dan bukan cuma \"jalan di localhost\" — **deploy ke Vercel, database di Neon, payment jalan, auth jalan**.
+
+Tapi plot twist: **gue gak nulis satu baris pun kode**. Gue cuma nulis **spec**, review **diff**, dan bilang **\"lanjut\"** atau **\"revisi\"**.
+
+Selamat datang di era **AI Coding Agents**.
+
+---
+
+## Vibe Coding vs Agentic Coding: Bedanya di Mana?
+
+| Aspek | Vibe Coding | Agentic Coding |
+|-------|-------------|----------------|
+| **Role lu** | Prompt operator | **Orchestrator / Tech Lead** |
+| **Output AI** | Potongan kode (snippet) | **File lengkap, test, docs, config** |
+| **Workflow** | Prompt → copy-paste → run → error → tanya AI | **Spec → Agent generate → Review diff → Approve/Reject** |
+| **Context** | Lu paste kode ke chat | **Agent baca seluruh codebase** (@codebase) |
+| **Task scope** | Satu fungsi / satu komponen | **Feature utuh: auth, billing, dashboard** |
+| **Responsibilitas** | Lu yang debug | **Agent jalanin test, fix error sendiri** |
+
+> **Analogi simpel:** Vibe coding = lu suruh freelance nulis satu halaman. Agentic coding = lu **hire CTO AI** yang manage tim 5 junior AI (frontend, backend, DB, DevOps, QA) — lu cuma approve PR.
+
+---
+
+## Tools Agentic yang Lagi Heboh (September 2026)
+
+### 1. **Cursor Composer** (The Daily Driver)
+- **Killer feature:** `@codebase` context — agent baca **seluruh project** lu, bukan cuma file yang dibuka
+- **Multi-file edit:** Satu prompt → ubah 15 file sekaligus (route, component, schema, test, types)
+- **Terminal integration:** Agent bisa jalanin `pnpm build`, `pnpm test`, `pnpm lint` — **fix error sendiri sampai hijau**
+- **Harga:** $20/bulan (Pro), unlimited Composer
+
+### 2. **Claude Code** (The Heavy Lifter)
+- **Killer feature:** Bisa **refactor arsitektur skala besar** — misal: \"ubah semua API dari REST ke tRPC\" → dia lakuin 50+ file
+- **Terminal-native:** Jalan di CLI, bukan IDE. Cocok buat yang suka tmux + neovim
+- **Best buat:** Migrasi besar, bikin scaffolding project baru, code review otomatis
+- **Harga:** Usage-based (API Anthropic), bisa mahal kalo heavy user
+
+### 3. **Devin** (The Autonomous Intern)
+- **Killer feature:** **Sandbox terisolasi** — Devin clone repo, bikin branch, jalanin test, buat PR, respond review comment — **sendirian**
+- **Async workflow:** Lu assign task lewat Slack/Linear → Devin kerjain di background → notif kalau selesai / butuh input
+- **Best buat:** Task yang repetitive tapi butuh konteks (update deps, bikin test coverage, fix lint error)
+- **Harga:** $500/bulan (team), mahal tapi scalable
+
+### 4. **Windsurf (Cascade)** (The Challenger)
+- **Killer feature:** **Cascade** — agent yang \"flow\" sama lu, nggak cuma request-response
+- **Context awareness:** Lebih baik ngerti *intent* lu, bukan cuma instruksi literal
+- **Harga:** $15/bulan, lebih murah dari Cursor
+
+---
+
+## Kenapa Pemula HARUS Langsung Belajar Agentic (Skip Vibe Coding)
+
+Gue lihat banyak pemula trapped di **vibe coding hell**:
+1. Prompt vague → AI generate chaos
+2. Error → tanya AI → AI generate chaos lain
+3. Codebase jadi spaghetti → lu stuck → **nyerah**
+
+Dengan agentic workflow, **lu dipaksa** jadi developer beneran sejak hari pertama:
+
+### Lu Harus Bisa:
+- **Nulis spec yang jelas** (bukan \"bikin e-commerce\" tapi \"Next.js 14 App Router, Prisma+Postgres, NextAuth credentials+Google, Stripe Checkout, Server Components default\")
+- **Review diff kritis** (mau nerima PR dari junior yang nggak tau requirement? Enggak kan?)
+- **Arsitektur & decision making** (Kenapa pakai Server Component? Kenapa tRPC bukan REST? Kenapa Zod bukan Yup?)
+- **Debugging sistem** (Bukan fix syntax error — tapi \"kenapa latency API naik 3x setelah deploy?\")
+
+> **Fakta pahit:** Agentic coding **nggak buat lu jadi malas belajar**. Justru **maksa lu belajar hal yang benar**: arsitektur, trade-off, communication, judgment. Syntax? Itu yang paling gampang di-delegate.
+
+---
+
+## Workflow Agentic Buat Pemula: \"Spec → Review → Ship\"
+
+Ini workflow yang gue pakai tiap hari, dan yang gue ajarin ke junior:
+
+### Step 1: Nulis SPEC (Bukan Prompt)
+```markdown
+## Spec: Fitur Checkout Stripe
+- **Stack:** Next.js 14 App Router, TypeScript strict, Tailwind, Prisma + PostgreSQL
+- **Auth:** NextAuth (credentials + Google), protected route `/checkout`
+- **Flow:**
+  1. User klik \"Beli Sekarang\" di `/product/[id]`
+  2. Redirect ke `/api/checkout` → create Stripe Checkout Session
+  3. User bayar di Stripe → redirect ke `/checkout/success?session_id=...`
+  4. Webhook `/api/webhook/stripe` → update order status, kirim email
+- **Validation:** Zod schema buat input produk, quantity, metadata
+- **Error handling:** Toast error user-friendly, log server-side detail
+- **Testing:** Unit test webhook, integration test flow checkout
+- **Files yang diharuskan disentuh:** 
+  - `app/product/[id]/page.tsx` (Client Component)
+  - `app/api/checkout/route.ts`
+  - `app/api/webhook/stripe/route.ts`
+  - `app/checkout/success/page.tsx`
+  - `prisma/schema.prisma` (tambah model Order)
+  - `lib/stripe.ts`, `lib/email.ts`
+```
+
+### Step 2: Kasih ke Agent + Konteks
+```
+@codebase Baca spec di atas. Implementasi fitur checkout Stripe.
+Gunakan pattern yang sudah ada di codebase (lihat `app/api/` dan `lib/`).
+Jalankan `pnpm build` dan `pnpm test` setelah selesai.
+Kalau error, fix sendiri sampai hijau.
+```
+
+### Step 3: Review DIFF (Ini Paling Penting)
+Cursor Composer kasih **diff view** — lu liat:
+- File baru apa yang dibikin
+- Line apa yang diubah
+- Import apa yang ditambah
+- Test apa yang ditulis
+
+**Checklist review gue:**
+- [ ] Arsitektur sesuai spec? (Server Component vs Client Component benar?)
+- [ ] TypeScript strict? Ada `any` nggak?
+- [ ] Validation Zod di semua input?
+- [ ] Error handling nggak leak stack trace?
+- [ ] Env variable dipakai benar? (Nggak hardcoded?)
+- [ ] Test coverage minimal happy path?
+- [ ] Code style konsisten sama codebase existing?
+
+### Step 4: Approve / Reject / Iterate
+- **Approve:** \"Merged, lanjut fitur berikutnya\"
+- **Reject + alasan:** \"Webhook nggak verify signature Stripe. Fix pake `stripe.webhooks.constructEvent`. Jalanin test lagi.\"
+- **Iterate:** \"Bagus, tapi tambahin idempotency key biar aman kalau user double-click.\"
+
+---
+
+## Contoh Nyata: Gue Bikin SaaS Boilerplate 3 Jam
+
+**Spec:** Next.js 14 SaaS starter: Auth (NextAuth), Billing (Stripe), Dashboard, Admin Panel, Email (Resend), DB (Prisma+Postgres), Deploy (Vercel+Neon).
+
+**Hasil Cursor Composer dalam 3 jam:**
+- 47 files created/modified
+- 2.800+ lines of code
+- Semua test pass (`pnpm test` ✅)
+- Build production success (`pnpm build` ✅)
+- Deploy ke Vercel — **jalan langsung**
+
+**Waktu gue:** 45 menit nulis spec + 15 menit review diff + 10 menit deploy = **1 jam 10 menit**.
+
+Dulu? **2-3 minggu**.
+
+> **Key insight:** Waktu lu **ggak habis buat nulis kode**. Habis buat **pikir spec, review arsitektur, decide trade-off**. Itu skill yang **AI gak bisa ganti**.
+
+---
+
+## Tips Buat Pemula: Jangan Beli Tools, Beli Workflow
+
+### 1. **Mulai dari Cursor Pro** ($20/bulan)
+Termasuk Composer + `@codebase` + unlimited. ROI paling cepat. Kalau lu pelajar, minta **GitHub Student Pack** → gratis 1 tahun.
+
+### 2. **Jangan Langsung Claude Code / Devin**
+Mereka powerful tapi **learning curve curam**. Butuh pengalaman review PR, CI/CD, arsitektur dulu. Cursor dulu, baru naik level.
+
+### 3. **Bikin Project Nyata, Bukan Tutorial**
+- Todo app? **Bosan, gak ajarin apa-apa.**
+- Bikin **tools buat diri sendiri**: expense tracker, habit tracker, portfolio CMS, blog engine.
+- Lu jadi **user pertama** → lu tau pain point → lu tau fitur apa yang butuh.
+
+### 4. **Wajib: Setup CI/CD dari Hari Pertama**
+```yaml
+# .github/workflows/ci.yml
+name: CI
+on: [push, pull_request]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm format:check
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: pnpm build
+```
+Agent **bisa bikin file ini** — tapi **lu yang harus suruh**. Nggak ada CI/CD = lu nggak tau kalo agent generate broken code.
+
+### 5. **Belajar Baca Diff Sebelum Belajar Prompt**
+Diff review = code review. Skill ini **transferable** ke kerja tim nanti. Lu review PR junior → sama aja review PR AI.
+
+---
+
+## Anti-Pattern yang Harus Dihindari
+
+❌ **\"Bikin sayain deh\"** — Terlalu vague, hasilnya chaos  
+❌ **Accept tanpa review** — Lu jadi bottleneck, nggak tau kode lu sendiri  
+❌ **Nggak jalanin test/build** — Agent bisa hallucinate passing test  
+❌ **Nggak commit antar step** — Kalau error, susah rollback  
+❌ **Copy-paste spec dari blog** — Spec harus **context-aware** (stack lu, convention lu, constraint lu)
+
+✅ **Spec detail + context** → ✅ **Review diff baris per baris** → ✅ **Jalanin CI/CD** → ✅ **Commit atomic** → ✅ **Deploy**
+
+---
+
+## Kesimpulan: Lu Bukan Prompt Engineer. Lu **AI Orchestrator**.
+
+Era 2026 ini bukan tentang **siapa paling jago prompt**. Tapi tentang **siapa paling jago:**
+1. **Mendefinisikan masalah** dengan presisi (spec writing)
+2. **Mengelola agent** seperti manajer proyek (review, iterate, approve)
+3. **Memiliki judgment** teknis (arsitektur, security, performance, trade-off)
+4. **Bertanggung jawab** atas hasil akhir (lu yang deploy, lu yang on-call)
+
+> *\"AI coding agent itu kayak tim 10 junior developer yang gak pernah capek, gak pernah marah, gak pernah minta gaji naik. Tapi mereka **butuh lead yang kompeten**. Lu siap jadi lead itu?\"*
+
+---
+
+## Call to Action
+
+**Sudah coba Cursor Composer / Claude Code / Devin?**  
+- Berhasil bikin fitur utuh tanpa nulis kode?  
+- Atau stuck di review diff karena nggak ngerti arsitektur?  
+
+Cerita di komentar atau DM gue di [WhatsApp](https://wa.me/628xxxxxxxxxx). Gue baca semua.
+
+---
+
+*Mau belajar jadi AI Orchestrator dari nol? Cek [tentang saya](/about) — gue share workflow harian, stack, dan resource belajar yang gue pakai buat bikin produk nyata pakai AI agent.*
+
+---
+
+*PS: Artikel ini **ditulis manual**. Tapi riset data, cek fakta, dan review outline dibantu AI. Symbiosis yang sehat, ingat? 😉*
