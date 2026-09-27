@@ -1,0 +1,119 @@
+---
+title: "MCP, USB-C-nya AI Tooling — dan 8,5% Server-nya Nggak Kunci Pintu"
+publishedAt: "2026-09-27"
+summary: "MCP tumbuh 970 kali dalam 18 bulan dan/OpenAI, Microsoft, AWS, Google semua ikut. Tapi hanya 8,5% server-nya implementasi auth wajib. Ini yang perlu programmer pemula tahu."
+tag: "Tips"
+---
+
+> *"Lu ngasih kunci rumah ke AI, terus bilang 'dia kan cuma mau bantu'. Dan ya, dia beneran cuma mau bantu — kenapa dia punya akses ke semua lemari di rumah itu, ya?"*
+
+Bayangin lu pengen AI agent bisa langsung baca database lu, jalanin test, atau nge-commit ke repo. Dulu itu berarti lu nulis integrasi sendiri, satu per satu, per tool. Cape banget.
+
+Terus November 2024, Anthropic ngeluarin satu protokol: **Model Context Protocol (MCP)**. Ibarat USB-C buat AI tooling — satu colokan standar buat nyambungin AI ke tool apa pun.
+
+Delapan belas bulan kemudian, protokol ini meledak. Dan setelah gue cek angkanya, kesimpulannya agak campur.
+
+## Angka yang Bikin Kaget (Bagian Bagus)
+
+MCP luncur dengan sekitar **100.000 unduhan SDK per bulan**. Maret 2026? **97 juta per bulan**. Itu naik **970 kali** dalam 18 bulan.
+
+Yang bikin protokol ini naik bukan cuma cepat, tapi naiknya berurutan dan melibatkan orang besar:
+
+| Perusahaan | Kapan | Kenapa Penting |
+|------------|-------|----------------|
+| OpenAI | Maret 2025 | Bukti ini bukan produk proprietary satu vendor |
+| Microsoft | Juli 2025 | Masuk kredibilitas enterprise |
+| AWS | November 2025 | Tim compliance bisa approve |
+| Linux Foundation | Desember 2025 | Governance netral, satu vendor nggak bisa mengunci |
+
+Desember 2025 itu poin paling penting buat lu yang pemula. MCP dipindah ke Linux Foundation, dengan Anthropic, Block, dan OpenAI sebagai founding contributor, sementara Google, Microsoft, AWS, dan Cloudflare dapat kursi platinum.
+
+Artinya? MCP bukan produk Anthropic. Kalau lu hari ini ngambil Claude, besok ganti Gemini atau model lokal, **integrasi lu nggak perlu ditulis ulang.** Itu benefit terbesar protokol ini — dan persis alasan kenapa lu perlu belajarin sekarang, bukan nanti.
+
+Bulan April 2026, MCP Dev Summit di New York encontraba sekitar 1.200 peserta. Repo intinya udah nyampe **86.148 stars**. Tiga MCP server paling dicari sedunia: **Playwright (82.000), Figma (74.000), dan GitHub (69.000)** pencarian per bulan.
+
+Kelimanya, ini udah bukan aksesori AI. Ini infrastruktur.
+
+## Sekarang Bagian yang Jlek (Tetap Baca)
+
+Nah, ini yang bikin gue nulis, karena angka di atas gampang bikin orang buta.
+
+Dari laporan adopsi MCP 2026: **hanya 8,5% MCP server yang mengimplementasi OAuth 2.1 dengan PKCE** — padahal itu standar keamanan WAJIB di spesifikasi sejak revisi November 2025 untuk server yang bisa diakses lewat internet. Nggak ada pengecualian.
+
+Dua angka lain yang bikin merinding:
+
+- **Hanya 18%** deployment yang punya access scoping untuk permission tool sama sekali
+- **53%** MCP server nyimpen kredensial langsung di file konfigurasi, bukan di secrets manager
+
+Baca lagi yang terakhir. Lebih dari setengah server itu nulis password-nya langsung di file. File itu biasanya masih ikut ter-commit ke git.
+
+> **Insight:** Standar yang bikin MCP sukses — decoupling model dari tooling — itu juga yang bikin celah keamanannya. Kasih AI akses ke semua sistem lu, berarti keamanan lu cuma sekuat auth server itu. Dan auth-nya lagi di 8,5%.
+
+## "MCP Shadow IT" — Alias Baru dari "Bocor"
+
+Peneliti keamanan punya nama baru buat masalah ini: **MCP Shadow IT**.
+
+Bayangin begini. Antesnya, buat expose API internal ke sistem luar, ada proses review, ada approval, ada ticket. Sekarang? Lu bikin MCP server lokal yang nunjukin database dev lu, jalankan sekali, selesai. Tiga puluh menit. Nggak ada yang review, nggak ada yang tahu.
+
+Bukan karena ada orang jahat. Karena **gampang banget.** Dan tim IT yang pengen nge-block juga susah, karena lu bisa jalanin semua di laptop lu sendiri.
+
+Temuan yang paling sering muncul di laporan: **tingkat niat jauh lebih tinggi dari tingkat pemakaian produksi.** Satu survei (Stacklok 2026) nemu MCP ada di prioritas utama banyak responden — tapi cuma **41%** responden industri software yang melaporkan pemakaian produksi meski terbatas. Di industri software itu sendiri, **45%**.
+
+Ada klaim yang#!/usr/bin/env viral bilang "78% enterprise AI team sudah pakai MCP di production." Klaim itu nggak hold up kalau di scrutiny. Satu tim riset yang punya angka di kisaran itu bahkan mereview dan menurunkan estimasinya sendiri.
+
+Pelajaran? Angka MCP vary gila-gilaan tergantung **apa yang diukur**: niat diadopsi, server yang terdaftar di registry, atau pemakaian produksi beneran. Jangan diperlakukan sama.
+
+## Buat Pemula: 4 Aturan Biar Nggak Ke-Basmekan
+
+Gue nggak nyuruh lu bikin MCP server cuma buat learn. Gue nyuruh lu tau aturan main sebelum nyampe.
+
+### 1. Cek registry dulu, jangan langsung bikin
+
+Udah ada ribuan server publik. Kalau butuh akses GitHub, cek dulu apakah sudah ada yang bisa. Server random yang lu install = kode orang lain yang punya akses ke sistem lu.
+
+### 2. Auth dari hari pertama, jangan ditunda
+
+Memasang auth ke sistem yang udah produksi itu jauh lebih mahal daripada bangun dari awal. Kalau cuma buat belajar di laptop sendiri? Pakai `stdio` transport, lokal, nggak ada yang internet-facing. Aman, dan cukup buat paham konsepnya.
+
+### 3. Jangan hard-code kredensial. Pernah.
+
+53% itu bukan statistik lucu. Buat project pribadi Pun, `.env` yang masuk `.gitignore` itu perbedaan antara "belajar" sama "belajar sambil nge-publish password".
+
+### 4. Ingat batasannya — MCP bukan pengganti API
+
+MCP itu buat AI, bukan buat aplikasi lu. REST dan GraphQL API lu tetep melayani user manusia dan service lain. MCP nge-*wrap* API itu biar bisa diakses LLM. Kalau lu pakai MCP buat query aplikasi lu sendiri, lu cuma nambah satu layer tanpa alasan.
+
+## Kenapa Ini Penting Buat Karir Lu
+
+Semua post gue sebelumnya soal AI agents nyebut satu hal: lu bergeser dari nulis kode ke ngatur kerjaan. MCP nyambungin dua itu.
+
+Orang yang bisa bikin agent yang **terhubung ke tool nyata** — database, CI, issue tracker, file desain — itu bukan orang yang cuma ngerti cara pakai tool orang. Itu orang yang bisa ngebangun sistem.
+
+Dan junior hari ini? Banyak di posisi yang sama dengan lu 12 bulan lalu. Bedanya cuma: mereka punya 97 juta unduhan dan pertumbuhan 970 kali buat dipelajari, plus Linux Foundation yang jaga supaya protokol ini nggak mati cuma karena satu perusahaan berubah pikiran.
+
+> **Insight:** Protokol yang menang bukan yang paling pintar, tapi yang paling banyak colokannya. USB-C menang bukan karena paling cepat — tapi karena semua orang setuju colokannya sama.
+
+## Penutup: Belajar Sekarang, Pasang Belum
+
+MCP bakal jadi bagian dari stack lu, bukan karena hype, tapi karena tool lu bakal ngomong pakai MCP dan lu bakal jadi orang yang nggak perlu minta tolong.
+
+Buat sekarang? Cukup hafal dua kalimat ini:
+
+1. MCP itu **USB-C** — satu standar, banyak tool, ganti model tanpa nulis ulang integrasi
+2. 8,5% server-nya nggak terkunci — jadi **cek auth sebelum lu kasih akses**
+
+Dua kalimat itu cukup buat lu nggak keliatan kuno pas obrolan tim besok. Sisanya, belajar saat lu beneran butuh.
+
+---
+
+**Penasaran bikin MCP server pertama lu?**
+
+Baca [catatan blog lainnya](/blog) buat rekaman teknis lain, atau langsung [tanya saya soal tooling](/about) — gue biasa ngoprek arsitektur AI di project sendiri.
+
+Kalau lagi belajar dan mau referensi lain, cek juga:
+- [Spesifikasi resmi MCP](https://modelcontextprotocol.io) — rujukan primer, bukan artikel pihak ketiga
+- [MCP Registry](https://registry.modelcontextprotocol.io) — cari server yang udah ada sebelum bikin sendiri
+
+---
+
+*Mulai dari `stdio` lokal, tambah auth sebelum expose, jangan hard-code apa pun. Itu aja rumusnya.*
