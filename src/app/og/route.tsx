@@ -4,7 +4,7 @@ import path from "path";
 
 // Import langsung dari source file (bukan barrel/index.ts)
 // untuk menghindari bundle 66+ komponen once-ui ke Edge Function
-const baseURL = "bimadev.online";
+const baseURL = "bimadev.my.id";
 const person = { name: "Bima", role: "FullStack Developer" };
 
 export const runtime = "nodejs";

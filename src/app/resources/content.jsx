@@ -45,7 +45,7 @@ const social = [
   {
     name: "Email",
     icon: "email",
-    link: "mailto:contact@bimadev.online",
+    link: "mailto:bimadev06@gmail.com",
   },
 ];
 
@@ -195,16 +195,23 @@ const about = {
         ],
       },
       {
-        title: "Artificial Intelegent",
-        description: <>Creating useful and interesting AI</>,
+        title: "Desktop & System Engineering",
+        description: <>Building high-performance desktop applications with Tauri, Rust, and React.</>,
         // optional: leave the array empty if you don't want to display images
         images: [
           {
-            src: "/images/projects/project-01/3d-builder.png",
-            alt: "3D Builder AI - AI-powered 3D model generation and visualization tool",
+            src: "/images/projects/project-01/pos-kasir.png",
+            alt: "POS-Kasir - Desktop Point of Sale system built with Tauri v2, Rust, and React 19",
             width: 16,
             height: 9,
           },
+        ],
+      },
+      {
+        title: "Artificial Intelligence",
+        description: <>Creating useful and interesting AI solutions</>,
+        // optional: leave the array empty if you don't want to display images
+        images: [
           {
             src: "/images/projects/project-01/deep-talk-ai.png",
             alt: "Deep Talk AI - Advanced conversational AI chatbot with natural language processing",

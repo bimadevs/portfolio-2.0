@@ -3,7 +3,7 @@
 ## ✅ COMPLETED IMPLEMENTATIONS
 
 ### 1. **Fixed Critical baseURL Issue**
-- ✅ Changed from `bimadev.online` to `bimadev.online` in [src/app/resources/config.js](src/app/resources/config.js)
+- ✅ Set to `bimadev.my.id` in [src/app/resources/config.js](src/app/resources/config.js)
 - This fixes all sitemap URLs, canonical URLs, and Open Graph URLs
 
 ### 2. **Enhanced Meta Tags**
@@ -165,7 +165,7 @@ Or use online tools:
 9. **Submit to Search Engines**
    - Google Search Console: https://search.google.com/search-console
    - Bing Webmaster Tools: https://www.bing.com/webmasters
-   - Submit sitemap: `https://bimadev.online/sitemap.xml`
+   - Submit sitemap: `https://bimadev.my.id/sitemap.xml`
 
 10. **Verify Structured Data**
     - Test with: https://search.google.com/test/rich-results
@@ -193,10 +193,10 @@ Or use online tools:
 
 - [ ] Test on mobile devices
 - [ ] Verify Open Graph images: Share on Twitter/LinkedIn
-- [ ] Test with Google Rich Results: https://search.google.com/test/rich-results?url=https://bimadev.online
+- [ ] Test with Google Rich Results: https://search.google.com/test/rich-results?url=https://bimadev.my.id
 - [ ] PageSpeed Insights: https://pagespeed.web.dev/
 - [ ] Test accessibility: https://wave.webaim.org/
-- [ ] Check security headers: https://securityheaders.com/?q=https://bimadev.online
+- [ ] Check security headers: https://securityheaders.com/?q=https://bimadev.my.id
 
 ---
 
@@ -264,7 +264,7 @@ Use these tools to verify SEO implementation:
 ## 📝 NOTES
 
 ### Important Configuration:
-- Base URL is now correctly set to `bimadev.online`
+- Base URL is now correctly set to `bimadev.my.id`
 - All URLs in sitemap, OG tags, and schemas use `https://`
 - Twitter handle: `@biimaa_jo` (update if different)
 - AI scrapers are blocked in robots.txt (remove if you want)

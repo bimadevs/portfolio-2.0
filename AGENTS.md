@@ -59,6 +59,18 @@ Next.js 14 portfolio site for BimaDev (FullStack Developer). Dark-themed, conten
 - **DO NOT** bypass RouteGuard for password-protected routes
 - **DO NOT** add Tailwind — project uses CSS Modules + SCSS + Once UI
 - **DO NOT** add new npm dependencies unless stdlib cannot do it
+- **DO NOT** commit or deploy updates without bumping `package.json` version
+
+## VERSIONING DISCIPLINE (STRICT)
+
+- **Semantic Versioning (SemVer 2.0.0)**: Seluruh pembaruan/perubahan pada proyek WAJIB menaikkan nomor versi pada `package.json` secara disiplin (`MAJOR.MINOR.PATCH`):
+  - **PATCH (`x.x.+1`)**: Bug fixes, perbaikan CSS/UI ringan, penyesuaian teks/copy, perbaikan SEO meta tags, atau perbaikan typo.
+  - **MINOR (`x.+1.0`)**: Penambahan fitur baru, penambahan halaman baru, penambahan/penghapusan proyek showcase (`src/app/work/projects/`), atau integrasi modul baru.
+  - **MAJOR (`+1.0.0`)**: Rilis besar, perombakan arsitektur/framework, rebranding, redesign sistem antarmuka menyeluruh, atau perubahan yang tidak backward-compatible.
+- **Workflow Rilis & Commit**:
+  1. Selalu periksa dan sesuaikan versi di `package.json` (dan `package-lock.json` jika ada) sebelum melakukan staging/commit.
+  2. Gunakan konvensi commit yang rapi dan mencantumkan konteks versi (misal: `release: v1.0.0 - migrate domain and update showcase projects`).
+  3. Pastikan git tag dibuat saat ada rilis versi penting untuk menjaga riwayat rilis profesional.
 
 ## COMMANDS
 

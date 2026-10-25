@@ -1,0 +1,99 @@
+---
+title: "POS-Kasir — Sistem Point-of-Sale Desktop Ritel Minimarket Modern & Cepat"
+publishedAt: "2026-03-15"
+summary: "Sistem kasir minimarket desktop offline-first berkinerja tinggi berbasis Tauri v2 (Rust) & React 19. Dilengkapi Dual-Mode LAN, transaksi atomik SQLite WAL, keyboard-first UI, dan pencetakan struk termal raw ESC/POS."
+images:
+  - "/images/projects/project-01/pos-kasir.png"
+team:
+  - name: "BimaDev"
+    role: "Desktop & FullStack Developer"
+    avatar: "/images/logo-color.png"
+    WhatsApp: "https://wa.me/6282254044783"
+    Instagram: "https://instagram.com/biimaa_jo"
+link: https://github.com/bimadevs/pos-kasir
+---
+
+> "Kasir ritel minimarket membutuhkan kecepatan detik demi detik, keandalan tanpa koneksi internet, dan ketahanan data saat listrik padam mendadak."
+
+Halo semuanya, ini Bima lagi! 👋
+
+Kali ini saya ingin membagikan proyek sistem desktop yang telah saya rancang dan bangun secara intensif: **POS-Kasir** — sebuah aplikasi *Point-of-Sale* (kasir) desktop *offline-first* modern untuk operasional ritel minimarket mandiri.
+
+Aplikasi ini dibangun menggunakan arsitektur hybrid performa tinggi: **Tauri v2 (Rust)** pada sisi backend dan **React 19 + TypeScript + Tailwind CSS v4** pada sisi frontend antarmuka.
+
+---
+
+## 💡 Mengapa Membangun POS-Kasir?
+
+Sebagian besar aplikasi kasir ritel saat ini berbasis web atau cloud subscription. Meskipun mudah diakses, solusi cloud seringkali bermasalah di dunia nyata minimarket:
+
+1. **Ketergantungan Internet**: Jika jaringan internet terputus atau sinyal seluler drop, antrean kasir langsung macet total.
+2. **Printer Dialog Lemot**: Aplikasi web kasir biasanya membuka dialog print bawaan browser (`window.print()`), lambat, dan membuang waktu kasir saat antrean mengular.
+3. **Integritas Data Rawan Korup**: Gangguan daya listrik mendadak di toko fisik sering membuat database kasir lokal rusak jika tidak dirancang dengan atomic journaling.
+4. **Setup Multi-Kasir yang Rumit**: Memasang server database terpisah (seperti MySQL/PostgreSQL server) membutuhkan teknisi IT khusus dan biaya maintenance tinggi bagi pemilik toko UMKM.
+
+Dari permasalahan riil tersebut, saya merancang **POS-Kasir** sebagai aplikasi native Windows mandiri (single installer) yang langsung siap pakai tanpa konfigurasi database yang membingungkan.
+
+---
+
+## ⚡ Fitur Utama & Keunggulan
+
+### 1. Arsitektur Dual-Mode LAN (Server & Client dalam 1 File Installer)
+Tanpa perlu internet atau server cloud:
+- **Server Terminal**: Komputer kasir utama bertindak sebagai host yang mengelola database SQLite WAL terpusat dan menjalankan web server lokal ringan berbasis **Axum (Rust)**.
+- **Client Terminal**: 3 hingga 5 komputer kasir tambahan di toko yang sama dapat langsung terhubung ke Server Terminal melalui jaringan Wi-Fi/kabel LAN lokal secara real-time.
+
+### 2. Database Atomik SQLite WAL (Write-Ahead Logging)
+Keamanan transaksi adalah prioritas mutlak. Dengan mode SQLite WAL atomik:
+- Setiap item scan, pengurangan stok inventaris, dan transaksi kasir dieksekusi secara ACID.
+- Data tetap aman dan tidak korup meskipun komputer kasir mati mendadak saat listrik padam.
+
+### 3. Keyboard-First Cashier UI & Deteksi Barcode Scanner
+- **Bebas Scroll**: Seluruh layar transaksi muat sempurna dalam resolusi kasir tanpa scroll bar.
+- **Shortcut Cepat**: Kasir berpengalaman dapat menyelesaikan transaksi 100% menggunakan tombol keyboard (`F1`..`F12`, `Enter`, `Esc`, `Space`).
+- **Hardware Scanner Recognition**: Otomatis membedakan input cepat dari barcode scanner USB fisik dengan ketikan manual manusia berdasarkan timing buffer antar-karakter.
+
+### 4. Direct Raw ESC/POS Thermal Printing
+- Mengirimkan raw byte command ESC/POS langsung ke printer termal (58mm atau 80mm) via USB port maupun Network Socket.
+- Struk belanja dan kick-drawer laci kasir terbuka seketika tanpa jeda dialog sistem operasi.
+
+### 5. Keamanan & Void Terproteksi PIN Supervisor
+- Pembatalan transaksi atau penghapusan item keranjang belanja wajib memvalidasi PIN Supervisor untuk mencegah kecurangan kasir.
+- Log audit lengkap mencatat setiap tindakan operasional.
+
+### 6. Manajemen Kas & Shift Kasir (Z-Report)
+- Pencatatan modal awal kasir saat buka shift (*Shift Opening*).
+- Penghitungan uang fisik dan rekonsiliasi kas saat tutup shift (*Shift Closing*).
+- Pencetakan laporan ringkasan shift kasir (**Z-Report**) secara otomatis.
+
+---
+
+## 🛠️ Tech Stack & Arsitektur
+
+- **Backend Desktop**: [Tauri v2](https://v2.tauri.app/) (Rust 2024 edition) — jejak memori sangat rendah (<40 MB RAM), waktu startup instan.
+- **Frontend UI**: React 19, TypeScript, Tailwind CSS v4, Lucide Icons.
+- **Local HTTP Server**: Axum (Rust) untuk komunikasi antar-terminal LAN.
+- **Database Engine**: SQLite dengan mode WAL (*Write-Ahead Logging*).
+- **Target OS**: Windows 10 & Windows 11 (64-bit).
+- **CI/CD Pipeline**: Otomatisasi GitHub Actions untuk automated testing & build release multi-format (NSIS installer `.exe`, Windows `.msi`, dan portable binary).
+
+---
+
+## 🚀 Unduh & Coba Langsung
+
+Installer Windows siap pakai dapat langsung diunduh secara gratis melalui halaman GitHub Releases:
+
+- **GitHub Repository**: [github.com/bimadevs/pos-kasir](https://github.com/bimadevs/pos-kasir)
+- **Unduh Installer**: [pos-kasir Releases](https://github.com/bimadevs/pos-kasir/releases/latest)
+
+---
+
+## 💬 Diskusi & Masukan
+
+Proyek ini dibangun dengan standar rekayasa perangkat lunak yang matang (*clean architecture*, spesifikasi PRD lengkap, dan testing komprehensif). Jika teman-teman memiliki masukan, ide fitur, atau ingin berkolaborasi:
+
+- [GitHub Issues](https://github.com/bimadevs/pos-kasir/issues)
+- [WhatsApp](https://wa.me/6282254044783)
+- [Instagram](https://instagram.com/biimaa_jo)
+
+Selamat berkarya dan semoga bermanfaat! 🚀

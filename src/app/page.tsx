@@ -46,7 +46,7 @@ export async function generateMetadata() {
 const heroSocialLinks = [
   { name: "Instagram", icon: "instagram", href: "https://www.instagram.com/biimaa_jo" },
   { name: "WhatsApp", icon: "whatsapp", href: "https://wa.me/6282254044783" },
-  { name: "Email", icon: "email", href: "mailto:contact@bimadev.online" },
+  { name: "Email", icon: "email", href: "mailto:bimadev06@gmail.com" },
 ];
 
 export default function Home() {

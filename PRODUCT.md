@@ -23,7 +23,7 @@ web
 ## Operating Context
 
 - Browsed across desktop monitors and mobile devices by technical recruiters, collaborators, and clients reviewing project breakdowns, live demos, and blog essays.
-- Contact pathways initiated directly via WhatsApp, Instagram, or direct email (`contact@bimadev.online`).
+- Contact pathways initiated directly via WhatsApp, Instagram, or direct email (`bimadev06@gmail.com`).
 
 ## Capabilities and Constraints
 
